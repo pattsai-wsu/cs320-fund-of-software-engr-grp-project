@@ -1,0 +1,57 @@
+@startuml
+skinparam monochrome true
+skinparam actor{
+Style awesome
+BackgroundColor Application
+BorderColor Black
+}
+skinparam BackgroundColor AliceBlue
+skinparam rectangle{
+BackgroundColor Application
+}
+skinparam packageBackgroundColor Application
+skinparam ArrowColor Black
+skinparam noteBackgroundColor Application
+skinparam usecase {
+BackgroundColor AliceBlue
+BorderColor Black
+}
+
+:User: as U
+note "User options" as OP
+U-->OP
+
+package "Discrete Distributions" as REC1{
+(Binomial) as BD
+(Hypergeometric) as HD
+(Negative Binomial) as NBD
+(Poisson) as PD
+(Geometric) as GD
+}
+
+OP-->BD
+OP-->HD
+OP-->NBD
+OP-->PD
+OP-->GD
+
+rectangle HELP as REC3{
+usecase UC2 as"
+1. explanation of the distribution\n2.an example"
+}
+REC3-->REC1:extends
+
+note "User will input the required data" as input
+BD ..input
+HD ..input
+NBD ..input
+PD ..input
+GD ..input
+input-->REC2
+
+rectangle Computation as REC2{
+usecase UC1 as "..The code will..
+1. check if data is valid.
+2. compute the result with the valid data."
+}
+@enduml
