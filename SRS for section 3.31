@@ -1,0 +1,30 @@
+@startuml
+:User: as U
+(Welcome page) as wel
+U-->wel
+(Help page) as Help
+(Choose calculation) as ch
+wel-right->Help
+wel-down->ch
+rectangle Calculation_Options {
+(Binomial) as BD
+(Hypergeometric) as HD
+(Negative Binomial) as NBD
+(Poisson) as PD
+(Geometric) as GD
+ch-->BD
+ch-->HD
+ch-->NBD
+ch-->PD
+ch-->GD
+}
+BD -down-> (Result) : input
+HD -down-> (Result) : input
+NBD -down-> (Result) : input
+PD -down-> (Result) : input
+GD -down-> (Result) : input
+
+Result -down-> (external pages): learn more
+Result -up-> (ch) : go back to home page
+Result -down-> (bye bye): exit
+@enduml
