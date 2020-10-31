@@ -3,78 +3,46 @@ html,body{
 			height:100%;
 			margin:0px;
 			border:0px;
-			overflow:hidden; /*no scrollbars*/
 			display:block; /*no floating*/
-			/*background-color: #271F3F;
-			position: relative;*/
 		}
 
-.START{
-	top: 60%;
-	left:40%;
-	transform: translateX(-50%) translateY(1200%);
-	/*height: 90%;*/
-	width:20%;
-	margin: 0 auto;
-	font-size:100%;
-	background-color:#72C7E6;
-	color:#333;
-	padding:10px 20px;
-	border:2px solid white;
-	border-radius:30px;
-	/*box-shadow: 0 8px 10px 0 #E9F5F9, 0 2px 5px 0 #E9F5F9;
-*/	position: relative;	
+.container {
+  position: absolute;
+  width: 100px;
+  height:100px;
+  max-width: 100px;
+  top: 5%;
+  left: 92.5%;
+  transform: translateX(-50%) translateY(-10%);
 }
-
-.START:hover{
-	background:#3A778D;
-	color:white;
-	box-shadow: 0 3px 4px 0 #E9F5F9, 0 5px 10px 0 #E9F5F9;
+.logo2 {
+  display: block;
+  width: 100px;
+  height: 100px;
 }
-
-#EXIT{
-	top: 40%;
-	left:61%;
-	transform: translateX(-50%) translateY(1100%);
-	width:20%;
-	margin: 0 auto;
-	font-size:100%;
-	background-color:#72C7E6;
-	color:#333;
-	padding:10px 20px;
-	border:2px solid white;
-	border-radius:30px;
-	/*box-shadow: 0 8px 10px 0 #E9F5F9, 0 2px 5px 0 #E9F5F9;
-*/	position: relative;
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: .01s ease;
+  background-color: red;
 }
-
-#EXIT:hover{
-	background:#3A778D;
-	color:white;
-	box-shadow: 0 3px 4px 0 #E9F5F9, 0 5px 10px 0 #E9F5F9;
+.container:hover .overlay {
+  opacity: 1;
 }
-
 .logo{
-	width:90%;
-	height:center;
-	position: absolute;
-	top:50%;
-	left:50%;
-	transform: translateX(-50%) translateY(-50%);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10%);
 }
 
-.star1{
-	width:28%;
-	height:40%;
-	position: fixed;
-	bottom:5px;
-	left:5px;
-}
-
-.star2{
-	width:28%;
-	height:40%;
-	position: fixed;
-	top:5px;
-	right:5px;
+.h1{
+	color:white;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
 }

@@ -1,4 +1,3 @@
-drawCanvas();
 
 //this only close when the window open by itself
 function callExit(input){   

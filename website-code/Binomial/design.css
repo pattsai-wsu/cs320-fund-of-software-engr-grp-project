@@ -42,18 +42,7 @@ html,body{
   transform: translateX(-50%) translateY(-10%);
 }
 
-.Home{
-	left:4%;
-	top:5%;
-	transform: translateX(-50%) translateY(50%);
-	font-size:100%;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	background-color:#DCDCDC;
-	color:black;
-	position: relative;
-}
-.Home:hover{
-	background:#696969;
+.h1{
 	color:white;
-	box-shadow: 0 1px 2px 0 #E9F5F9, 0 2px 5px 0 #E9F5F9;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
 }
