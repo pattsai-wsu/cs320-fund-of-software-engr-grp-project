@@ -6,7 +6,7 @@ html,body{
 			display:block; /*no floating*/
 		}
 
-.Binomial{
+.Binomial,.Geometric,.Negative_binomial,.Hypergeometric,.Possion{
 	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
 	top:50%;
 	left:50%;
@@ -16,84 +16,50 @@ html,body{
 	color:black;
 	border:2px solid white;
 	position: relative;
+}
+.Geometric:hover,.Hypergeometric:hover,.Negative_binomial:hover,.Binomial:hover,.Possion:hover,#EXIT:hover{
+	color:white;
+	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+}
+
+.Binomial{
 	transform: translateX(-50%) translateY(1000%);	
 }
 .Binomial:hover{
 	background:#6B8E23;
-	color:white;
-	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+	border:2px solid #6B8E23;
 }
 
 .Geometric{
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	top:50%;
-	left:50%;
-	width:300px;
-	margin: 0 auto;
-	font-size:100%;
-	color:black;
-	border:2px solid white;
-	position: relative;
 	transform: translateX(-50%) translateY(1025%);	
 }
 .Geometric:hover{
 	background:#CB7123;
-	color:white;
-	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+	border:2px solid #CB7123;
 }
 
 .Hypergeometric{
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	top:50%;
-	left:50%;
-	width:300px;
-	margin: 0 auto;
-	font-size:100%;
-	color:black;
-	border:2px solid white;
-	position: relative;
 	transform: translateX(-50%) translateY(1050%);	
 }
 .Hypergeometric:hover{
 	background:#833D3F;
-	color:white;
-	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+	border:2px solid #833D3F;
 }
 
 .Negative_binomial{
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	top:50%;
-	left:50%;
-	width:300px;
-	margin: 0 auto;
-	font-size:100%;
-	color:black;
-	border:2px solid white;
-	position: relative;
 	transform: translateX(-50%) translateY(1075%);	
 }
 .Negative_binomial:hover{
 	background:#484941;
-	color:white;
-	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+	border:2px solid #484941;
 }
 
 .Possion{
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	top:50%;
-	left:50%;
-	width:300px;
-	margin: 0 auto;
-	font-size:100%;
-	color:black;
-	border:2px solid white;
-	position: relative;
 	transform: translateX(-50%) translateY(1100%);	
 }
 .Possion:hover{
 	background:#203C54;
-	color:white;
-	box-shadow: 0 1.5px 2px 0 #E9F5F9, 0 2.5px 5px 0 #E9F5F9;
+	border:2px solid #203C54;
 }
 
 #EXIT{
@@ -105,11 +71,8 @@ html,body{
 	color:black;
 	position: relative;
 }
-
 #EXIT:hover{
 	background:#696969;
-	color:white;
-	box-shadow: 0 3px 4px 0 #E9F5F9, 0 5px 10px 0 #E9F5F9;
 }
 
 .container {
@@ -134,7 +97,6 @@ html,body{
   right: 0;
   opacity: 0;
   transition: .01s ease;
-  background-color: red;
 }
 .container:hover .overlay {
   opacity: 1;
@@ -170,7 +132,6 @@ html,body{
   right: 0;
   opacity: 0;
   transition: .01s ease;
-  background-color: red;
 }
 .container1:hover .overlay1{
   opacity: 1;
