@@ -42,7 +42,58 @@ html,body{
   transform: translateX(-50%) translateY(-10%);
 }
 
-.h1{
+.h1,.symbol{
 	color:white;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
+}
+
+#error1,#error2,#error3{
+  color:red;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
+  font-size: 12px;
+  border:none;
+  background-color:transparent;
+  width: 180px;
+}
+
+
+.info {
+  background-color: #eee;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
+  color: #444;
+  padding: 10px;
+  width: 100%;
+  /* border: none; */
+  text-align: left;
+  font-size: 12px;
+  transition: 0.1s;
+  /* position: absolute; */
+  /* top: 85%; */
+  /* transform: translateX(0%) translateY(100%); */
+}
+
+.active, .info:hover {
+  background-color: #ccc;
+}
+
+.info:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.info1 {
+  padding: 0 10px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out;
+  /* position: fixed; */
+  /* top: 92.5%; */
 }
