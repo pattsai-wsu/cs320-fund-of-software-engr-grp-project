@@ -9,38 +9,47 @@
 </head>
 
 <body style="background-color:black;">
-
-    <h1 class="h1">Binomial Distribution</h1>
     
     <div class="container">
-        <img src="../image/logo.jpg" class="logo">
+        <img src="../image/mix.jpg" class="logo">
         <div class="overlay">
             <form action="../Main/index.html">
-                <input type="image" src="../image/logo2.jpg" class="logo2">
+                <input type="image" src="../image/mix2.jpg" class="logo2">
              </form>
         </div>
     </div>
 
-    <div class="symbol">
- 		x: <input type="text" name="x" id="x" style="text-align:center;" onkeyup="checkInput(1);">
- 		<input type="text" id="error1" readonly><br>
-         
-         n: <input type="text" name="n" id="n" style="text-align:center;" onkeyup="checkInput(2)";>
-        <input type="text" id="error2" readonly><br>
-         
-        p: <input type="text" name="p" id="p" style="text-align:center;" onkeyup="checkInput(3)";>
-        <input type="text" id="error3" readonly><br>
-        
-        Result: <input type="text" name="Result" id="result" style="text-align:center;" ><br>
-        <button onclick="calculate(x.value,n.value,p.value);">Result</button><br><br>
-     </div>
-     
-     <button class="info">ADD WORDS HERE</button>
-        <div class="info1">
-        <p>EXPLAINATION OF SOMETHING.....</p>
+    
+        <h1 class="h1">Binomial Distribution</h1>
+    
+        <div id="list">
+            <p><iframe src="temp.txt" frameborder="0" height="500" width="100%"></iframe>
+            </p>
+        </div>
+
+        <div class="symbol">
+            x: <input type="text" name="x" id="x" style="text-align:center;" onkeyup="check(1);">
+            <input type="text" id="error1" disabled><br>
+            
+            n: <input type="text" name="n" id="n" style="text-align:center;" onkeyup="check(2);">
+            <input type="text" id="error2" disabled><br>
+            
+            p: <input type="text" name="p" id="p" style="text-align:center;" onkeyup="check(3);">
+            <input type="text" id="error3" disabled><br>
+            
+            Result: <input type="text" name="Result" id="result" style="text-align:center;" disabled><br>
+
+            <button onclick="reset();">Reset</button>
+            <button onclick="calculate(x.value,n.value,p.value);">Result</button><br><br>
         </div>
     
-    <div class="w3-bar w3-green">
+     
+    <button class="info">ADD WORDS HERE</button>
+    <div class="info1">
+        <p>EXPLAINATION OF SOMETHING.....</p>
+    </div>
+    
+    <div class="w3-bar w3-green" id="this">
         <a href="http://dpc.patricktsai.com/" class="w3-bar-item w3-button w3-mobile">About US</a>
         <a href="#" class="w3-bar-item w3-button w3-mobile">Terms</a>
         <a href="#" class="w3-bar-item w3-button w3-mobile">Contact</a>

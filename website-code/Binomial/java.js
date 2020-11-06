@@ -1,95 +1,126 @@
-//to do:
-//	1. check x must be less or equal to n
-//  2. 0<= p must be less or equal 1
-// can add cumulative probability 
 
-function checkInput(num){
-	check(num);
-	// checkAll();
-}
-
-function checkAll(){
-	if(check(1)==true&&check(2)==true&&check(3)==true){
+function calculate(x,n,p){
+    if(checkAll()==true){
 		document.getElementById("result").disabled=false;
-		document.getElementById("result").value='';
+		let v1=Combination(n,x);
+   		let v2=Math.pow(p,x);
+   	 	let v3=Math.pow(1-p,n-x);
+		document.getElementById("result").value=(v1*v2*v3).toFixed(15);
 	}
 	else{
-		document.getElementById("result").disabled=true;
-		document.getElementById("result").value='input incorrect';
+		document.getElementById("result").value="Invalid Input";
 	}
 }
 
 function check(num){
-	let place=num;
-	let tempValue;
-	if(num==1)	tempValue=document.getElementById("x").value;
-	if(num==2)	tempValue=document.getElementById("n").value;
-	if(num==3)	tempValue=document.getElementById("p").value;
-	if(checkIfValid(tempValue)===false || checkNumberOnly(tempValue)===false){
-		document.getElementById("result").value="";
-		printError(place);
-		return false;
-	}
-	if(num==3){
-		if(checkLimit(tempValue))
-		document.getElementById("error3").value='';
-		else 
-		return false;
-	}
-	if(num==1)	document.getElementById("error1").value='';
-	if(num==2)	document.getElementById("error2").value='';
-	if(num==3)	document.getElementById("error3").value='';
-	return true;
-}
-
-function checkIfValid(input){
-	if(Number.isNaN(parseFloat(input)))	return false;
-	return true;
-}
-
-function checkNumberOnly(a){
-	for(let i=0; i<a.length; i++){
-		if(a.charCodeAt(i)!=46 && a.charCodeAt(i)<48 || a.charCodeAt(i)>57){
+	if(num==1){
+		let xValue=document.getElementById("x").value;
+		let error=document.getElementById("error1");
+		if(checkIfValidInput(xValue)==true){
+			error.value="✔";
+			return true;
+		}
+		else{
+			error.value="Input must be valid";
 			return false;
 		}
 	}
-	return true;
+	else if(num==2){
+		let nValue=document.getElementById("n").value;
+		let error=document.getElementById("error2");
+		if(checkIfValidInput(nValue)==true){
+			if(checkNXValue()==true){
+				error.value="✔";
+				return true;
+			}
+			else{
+				error.value="n must be greater than x";
+				return false;
+			}
+		}
+		else{
+			error.value="Input must be valid";
+			return false;
+		}
+	}
+	else{ //num==3
+		let pValue=document.getElementById("p").value;
+		let error=document.getElementById("error3");
+		if(checkIfValidInput(pValue)==true){
+			if(checkPValue()==true){
+				error.value="✔";
+				return true;
+			}
+			else{
+				error.value="p must between 1 and 0";
+				return false;
+			}
+		}
+		else{
+			error.value="Input must be valid";
+			return false;
+		}
+	}	
 }
 
-function checkLimit(a){
-	if(a>1 || a<0){
-		document.getElementById("error3").value="Probability is between 0 and 1";
+function checkIfValidInput(value){
+	if(checkIfValid(value)==false || checkNumberOnly(value)==false){
 		return false;
 	}
 	return true;
 }
 
-
-function printError(location){
-		if(location==1){
-			document.getElementById("error1").value="Please enter numbers only";
-		}
-		if(location==2){
-			document.getElementById("error2").value="Please enter numbers only";
-		}
-		if(location==3){
-			document.getElementById("error3").value="Please enter numbers only";
-		}
-		document.getElementById("result").disabled=true;
-		return;
+function checkIfValid(value){
+	if(isNaN(parseFloat(value)))	return false;
+	return true;
 }
 
-function calculate(a,b,c){
-//	if(!checkAll())	return;
-    checkAll();
-	let x=a;
-	let n=b;
-	let p=c;
+function checkNumberOnly(value){
+	let getDecimal=false;
+	for(let i=0; i<value.length; i++){
+		if(getDecimal==false){
+			if(value.charCodeAt(i)!=46 && value.charCodeAt(i)<48 || value.charCodeAt(i)>57){
+			return false;
+			}
+			if(value.charCodeAt(i)==46){
+				getDecimal=true;
+				if((i+1)==value.length) return false;
+				i++;
+			}
+		}
+		if(getDecimal==true){
+			if(value.charCodeAt(i)<48 || value.charCodeAt(i)>57){
+				return false;
+			}
+		}
+	}
+	return true;
+}
 
-	let v1=Combination(n,x);
-    let v2=Math.pow(p,x);
-    let v3=Math.pow(1-p,n-x);
-    document.getElementById("result").value=v1*v2*v3;
+function checkPValue(){
+	let p=document.getElementById("p").value;
+	if(p>=1 || p<=0){
+		return false;
+	}
+	return true;
+}
+
+function checkNXValue(){
+	let x=parseFloat(document.getElementById("x").value);
+	let n=parseFloat(document.getElementById("n").value);
+	if(n<=x){
+		return false;
+	}
+	return true;
+}
+
+function checkAll(){
+	if(check(1)==true&&check(2)==true&&check(3)==true){
+		if(checkPValue()==true && checkNXValue()==true){
+			return true;
+		}
+	}
+	return false;
 }
 
 function Combination(n,r){
@@ -103,6 +134,15 @@ function Factorial(n){
     else return n*Factorial(n-1);
 }
 
+function reset(){
+	document.getElementById("x").value="0";
+	document.getElementById("n").value="0";
+	document.getElementById("p").value="0";
+	document.getElementById("error1").value="";
+	document.getElementById("error2").value="";
+	document.getElementById("error3").value="";
+	document.getElementById("result").value="";
+}
 
 var acc = document.getElementsByClassName("info");
 var i;
