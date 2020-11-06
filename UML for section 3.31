@@ -1,11 +1,11 @@
-URL:http://www.plantuml.com/plantuml/png/VL7BQkim4DthAsRfBFm3NeJW19ALhxaGkYoACaYYemTwD0cb_rx9SHf2mGjpcFCu7Z6Rc7X8sH3hZX531pp2aJLlIC8P1CybhYftGMB7jbrNR0v8_YdLYJLRvLn449n49fwqivCe52kHDcYfKhkkrca-kujjrqKCA1AtaX2sp-JxFryXmXThUcsTqPocjdvNVdxp62GwWobeST-Wq0FAalr4U0aCDJ4w7UEyprZc_KjulsD2bPVrCnvc71x4E6CnVhD-1_FoqFp7c2cje0DjVKxiiA0DIy5nGTilQEnEF0ruJHWif-auSTK18GyMZ0luwys-EeMgDTB1YOiFI0xKuzn_IaytXFALDhpgn3PepzdG3m00
+http://www.plantuml.com/plantuml/uml/VL9DY_8m4BxFhvXZFFGFz21I1JtrBI_87fSOXpPicfHyhCgo_tsJD584wQ5zc7a-CXEoSvvR7qO5zTcHhP4xF0Fx82NCI3ZndZQfToC5vwhQ9cGdKjD2fGhOVZ364GgkH53SIwCpAGQ0wAckvgQhRQmi2SzrhmZtY_JptvJ0uG-mHcepIgwolJd4qnuJsPxYEDvACHyPsotrqVjD-69eawCpqhaoG1VhuulvU00nn5MQWgU2xRFH5Op2Ns1qzsGrLtbXbnCKSQiX_wimLTj5SwEBapxAuCrsvHBoVRsZKzGStHomY97z9nUKts2DKa_1msc5QzUCtGftNE5WRc2U3vaO4jKRl73nXTxWy7meHRWaNHw4yTlKI7VfOKVw6aRr1m00
 @startuml
 :User: as U
 (Welcome page) as wel
 U-->wel
 (Help page) as Help
 (Choose calculation) as ch
-wel-right->Help
+
 wel-down->ch
 rectangle Calculation_Options {
 (Binomial) as BD
@@ -19,13 +19,16 @@ ch-->NBD
 ch-->PD
 ch-->GD
 }
+(external pages) as learn
+learn-up->(external websites)
+Calculation_Options-down->Help
+Calculation_Options-up->learn
 BD -down-> (Result) : input
 HD -down-> (Result) : input
 NBD -down-> (Result) : input
 PD -down-> (Result) : input
 GD -down-> (Result) : input
 
-Result -down-> (external pages): learn more
 Result -up-> (ch) : go back to home page
 Result -down-> (bye bye): exit
 @enduml
