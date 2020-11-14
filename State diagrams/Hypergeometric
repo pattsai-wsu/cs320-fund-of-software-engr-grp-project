@@ -7,7 +7,7 @@ state Hypergeometric{
  Enterinput: do:\nreading input
 
  ValidData: check if:\n1. x, n, N and k are positive only\n2. x,n, N and k are integers\n3. N>=k\n4. n>=x
- checkIfValidInput: do:\n checking if x p and n are numbers
+ checkIfValidInput: do:\n checking if x, n, p and N are numbers
  ValidData -down->Failed: invalid data
  checkIfValidInput -left->ValidData
  Failed -up->Enterinput:renter the input
