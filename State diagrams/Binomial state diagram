@@ -4,10 +4,11 @@ State Failed: do:\nstops the user from proceeding
 state Binomial{
  Enterinput -down-> ValidData:needs checking
  ValidData -right-> checkIfValidInput
+ Enterinput: do:\nreading input
 
  /'checkIfValidInput -left->ValidData: return error'/
 
- ValidData: do:\nchecking x p and n values and their relationship
+ ValidData: check if:\n1.x, n and p are positive only\n2. x,n are integers, p can be either integer or decimal\n3. p is between 0-1\n4.x<=n
  checkIfValidInput: do:\n checking if x p and n are numbers
  ValidData -down->Failed: invalid data
  checkIfValidInput -left->ValidData
