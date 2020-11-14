@@ -1,0 +1,27 @@
+@startuml
+State Pass: do:\nshowing the result
+State Failed: do:\nstops the user from proceeding
+state Binomial{
+ Enterinput -down-> ValidData:needs checking
+ ValidData -right-> checkIfValidInput
+
+ /'checkIfValidInput -left->ValidData: return error'/
+
+ ValidData: do:\nchecking x p and n values and their relationship
+ checkIfValidInput: do:\n checking if x p and n are numbers
+ ValidData -down->Failed: invalid data
+ checkIfValidInput -left->ValidData
+ Failed -up->Enterinput:renter the input
+ ValidData -down->Pass: valid data
+ /'Cook -> Cook: Time
+ Cook -down-> Done: Timeout
+ Cook: do: run\ngenerator
+ Done -down-> Waiting
+ Done: do: buzzer on\nfor 5 secs.
+ Alarm -down-> Disabled
+ Alarm: do: display event
+}
+Operation --> Waiting: Cancel
+Operation --> Disabled: Door Opened
+@endum'/
+@enduml
