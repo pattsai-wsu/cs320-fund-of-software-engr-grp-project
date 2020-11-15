@@ -1,26 +1,27 @@
 @startuml
 State Pass: do:\nshowing the result
 State Failed: do:\nstops the user from proceeding
+State Enterinput
 state Geometric{
  Enterinput -down-> ValidData:needs checking
  ValidData -right-> checkIfValidInput
  Enterinput: do:\nreading input
 
- ValidData: check if:\n1. x and p are positive only\n2. x is integer, p can be either integer or decimal\n3. p is between 0 to 1
+ ValidData: check if:\n1. x and p are positive only\n2. x is integer, p can be either integer or decimal\n3. p is between 0 to 1\n4. x>=1
  checkIfValidInput: do:\n checking if x and p are numbers
  ValidData -down->Failed: invalid data
  checkIfValidInput -left->ValidData
  Failed -up->Enterinput:renter the input
  ValidData -down->Pass: valid data
- /'Cook -> Cook: Time
- Cook -down-> Done: Timeout
- Cook: do: run\ngenerator
- Done -down-> Waiting
- Done: do: buzzer on\nfor 5 secs.
- Alarm -down-> Disabled
- Alarm: do: display event
 }
-Operation --> Waiting: Cancel
-Operation --> Disabled: Door Opened
-@endum'/
+
 @enduml
+
+Description:   This state diagram is describing geometric distribution, after the user entered the input, it's in the needing chekcing state to validate if all the data are correct,
+we then check if they are 1. numbers only
+                          2. x and p are positive only
+                          3. x is integer
+                          4. p can be either integer or decimal
+                          5. p is between 0-1
+                          6. x>=1
+We calculate the result only when all the input data is valid, otherwise it will ask the user to renter the data if anything is incorrect.
