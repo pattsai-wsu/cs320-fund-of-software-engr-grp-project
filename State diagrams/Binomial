@@ -1,6 +1,7 @@
 @startuml
 State Pass: do:\nshowing the result
 State Failed: do:\nstops the user from proceeding
+State Enterinput
 state Binomial{
  Enterinput -down-> ValidData:needs checking
  ValidData -right-> checkIfValidInput
@@ -14,15 +15,14 @@ state Binomial{
  checkIfValidInput -left->ValidData
  Failed -up->Enterinput:renter the input
  ValidData -down->Pass: valid data
- /'Cook -> Cook: Time
- Cook -down-> Done: Timeout
- Cook: do: run\ngenerator
- Done -down-> Waiting
- Done: do: buzzer on\nfor 5 secs.
- Alarm -down-> Disabled
- Alarm: do: display event
 }
-Operation --> Waiting: Cancel
-Operation --> Disabled: Door Opened
-@endum'/
 @enduml
+
+Description: This state diagram is describing binomial distribution, after the user entered the input, it's in the needing chekcing state to validate if all the data are correct,
+we then check if they are 1. numbers only
+                          2. x, n and p are positive only
+                          3. x, n are integers
+                          4. p can be either integer or decimal
+                          5. p is between 0-1
+                          6. x<=n
+We calculate the result only when all the input data is valid, otherwise it will ask the user to renter the data if anything is incorrect.
