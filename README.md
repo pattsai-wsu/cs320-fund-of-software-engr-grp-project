@@ -1,4 +1,4 @@
-# cs320-fund-of-software-engr-grp-project
+# Discrete Probability Calculator v1.0
 Probability Calculator
 Description: For this project, we are creating a web-based calculator that calculates five different discrete distributions based on user's selection and inputs.
 Team members: Vuochlang Chang, Patrick Tsai, Zhicheng Zhou
