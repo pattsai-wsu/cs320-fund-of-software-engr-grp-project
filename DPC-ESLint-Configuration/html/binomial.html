@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <meta charset="utf-8">
+    <title>Binomial Distribution</title>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/binomial.css">
+   
+</head>
+
+<body style="background-color:black;" onload="callBinomial(0)">
+    
+    <hr class="line">
+    <p class=bg></p>
+    <p class=bg-white></p>
+
+    <div class="container">
+        <img src="../image/mix.jpg" class="logo" alt="">
+        <div class="overlay">
+            <form action="main.html">
+                <input type="image" src="../image/mix2.jpg" class="logo2" alt="">
+             </form>
+        </div>
+    </div>
+
+	<h1 class="h1">Binomial Distribution</h1>
+
+    <div id="explain">
+        <p><iframe src="../textFiles/binomial.txt" frameborder="0" height="500" width="100%"></iframe>
+            </p>
+    </div>
+
+    <div class="symbol">
+        x: <label for="x"></label>
+        <input type="text" name="x" id="x" style="text-align:center;" onkeyup="callBinomial(1)">
+
+        <label for="error1"></label>
+        <input type="text" id="error1" disabled><br>
+            
+        n: <label for="n"></label>
+        <input type="text" name="n" id="n" style="text-align:center;" onkeyup="callBinomial(2)">
+
+        <label for="error2"></label>
+        <input type="text" id="error2" disabled><br>
+            
+        p: <label for="p"></label>
+        <input type="text" name="p" id="p" style="text-align:center;" onkeyup="callBinomial(3)">
+
+        <label for="error3">
+        </label><input type="text" id="error3" disabled><br>
+            
+        Result: <label for="result"></label>
+        <input type="text" name="Result" id="result" style="text-align:center;" disabled><br>
+
+        <button onclick="callBinomial('reset');">Reset</button>
+        <button onclick="callBinomial('calculate');">Result</button><br><br>
+    </div>
+
+    <div  class="distribution-list">
+	   <p class="sideList">
+            <a href="binomial.html" class="dList" id="b1">Binomial Distribution</a>
+        <p>
+        <p class="sideList">
+            <a href="geometric.html" class="dList" id="b2">Geometric Distribution</a>
+        </p>
+        <p class="sideList">
+            <a href="hypergeometric.html" class="dList" id="b3">Hypergeometric Distribution</a>
+        </p>
+        <p class="sideList">
+            <a href="negative_binomial.html" class="dList" id="b4">Negative Binomial Distribution</a>
+        </p>
+        <p class="sideList">
+            <a href="possion.html" class="dList" id="b5">Possion Distribution</a>
+        </p>
+  	</div> 
+
+    <div  class="about-list" >
+        <form action="binomial.html">
+            <button class="aboutus" id="aboutus1">ABOUT US</button>
+        </form>
+        <form action="geometric.html">
+            <button class="aboutus" id="aboutus2">TERMS</button>
+        </form>
+        <form action="possion.html">
+            <button class="aboutus" id="aboutus3">CONTACT</button>
+        </form>
+    </div> 
+    
+    <script type="text/javascript" src="../js/binomial.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    
+</body> 
