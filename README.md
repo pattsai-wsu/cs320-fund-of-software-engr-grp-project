@@ -1,5 +1,4 @@
 # Discrete Probability Calculator v1.0
-Probability Calculator
 
 Description: For this project, we are creating a web-based calculator that calculates five different discrete distributions based on user's selection and inputs. The Discrete Probability Calculator is a simple website-based application that users can use to calculate the probability of the discrete distribution. There are multiple ways where the user can access the calculations for each distribution.
 
