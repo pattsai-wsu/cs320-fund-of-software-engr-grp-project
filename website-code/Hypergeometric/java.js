@@ -161,7 +161,7 @@ function checkNValue() {
 
 function checkAll(){
   if(check(1)==true&&check(2)==true&&check(3)==true){
-    if(checkNValue()==true && checkNXValue()==true){
+    if(checkNValue()==4 && checkNXValue()==true){//corrected an error in checkNValue
       return true;
     }
   }
@@ -207,3 +207,4 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
