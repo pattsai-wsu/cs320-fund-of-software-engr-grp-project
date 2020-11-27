@@ -154,12 +154,61 @@ html,body{
   opacity: 0;
   transition: .01s ease;
 }
-.iconReplace:hover .overlayP {
+.iconReplace {
   opacity: 1;
+  display: block;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 0.5em;
 }
 
-.distributionP {
+.sideListP{
+  font-size:2.5em;
+}
 
+.dListP, .ab{
+  text-decoration: none;
+  color:white;
+  font-family: "Lucida Sans Unicode";
+}
+.distribution-listP {
+  width: 100%;
+}
+
+.menuItemP {
+  display: block;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  border: 3px solid green;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.menuAboutP {
+  display: block;
+  float:left;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.about-listP {
+  margin-top:2.5em;
+}
+
+.menuAboutP a {
+  font-size: 0.9em;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  border: none;
 }
 
 .containerP {
@@ -171,6 +220,7 @@ html,body{
 
 .symbolP {
   clear:top;
+  padding-top:2em;
   padding-left:3em;
   padding-bottom:2em;
   color:black;
