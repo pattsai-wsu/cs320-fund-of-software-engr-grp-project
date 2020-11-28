@@ -216,7 +216,7 @@ html,body{
 }
 
 .about-listP {
-  margin-top:2.5em;
+  margin-top:0.9em;
 }
 
 .menuAboutP a {
@@ -279,7 +279,7 @@ html,body{
 .panel {
   padding: 0 18px;
   background-color: white;
-  border-bottom: 2px black;
+  border-bottom: 2px solid black;
   display: none;
   overflow: hidden;
 }
