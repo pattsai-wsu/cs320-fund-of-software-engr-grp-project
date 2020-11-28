@@ -9,6 +9,6 @@ $('.nav a').each(function () {
   // the current <a> element (using String.prototype.endsWith())
   // we add the 'active' class-name:
   if (fakeLocation.endsWith(pageAndFile)) {
-    $(this).closest('li').addClass('active');
+    $(this).closest('div').addClass('active');
   }
 });
