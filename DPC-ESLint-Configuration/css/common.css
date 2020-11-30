@@ -7,50 +7,6 @@ html,body{
       /*position: absolute;*/
       		/*display:block; no floating*/
 }
-
-.sideList{
-  font-size:17px;
-}
-
-.aboutus{
-  position:absolute;
-  top:570px;
-  width:100px;
-  height:30px;
-  font-size:15px;
-  background-color: transparent;
-  color:white;
-  border:none;
-}
-
-#aboutus1{
-  left:0px;
-}
-#aboutus2{
-  left:100px;
-}
-#aboutus3{
-  left:200px;
-}
-
-.line{
-	position:absolute;
-	top:210px;
-	width:300px;
-}
-
-.distribution-list{
-  position: absolute;
-  top:240px;
-  left: 30px;
-  text-align:center;
-}
-
-.dList, .ab{
-	text-decoration: none;
-	color:white;
-	font-family: "Lucida Sans Unicode";
-}
 #b1:hover{
 	color:#40E0D0;
 }
@@ -67,65 +23,12 @@ html,body{
 	color:#90EE90;
 }
 
-.bg-white{
-	width: 100%;
-	left:300px;
-	position:absolute;
-	height:100%;
-	top:0px;
-	border-top:0;
-	background-color: white; 
-  margin:0;
-}
-
-.container {
-  position: absolute;
-  width: 160;
-  height: 200;
-  left: 70px;
-}
-.logo2 {
-  display: block;
-  width: 160px;
-  height: 200px;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: .01s ease;
-}
-.container:hover .overlay {
-  opacity: 1;
-}
 .logo{
   width: 160px;
   height: 200px; 
 }
 
-.h1{
-  position:absolute;
-  top:10px;
-  left:500px;
-  color:black;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.symbol{
-  position: absolute;
-  left:400px;
-	color:black;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-}
-.symbol{
-  top:300px;
-}
 #error1,#error2,#error3{
-   position: absolute;
-  left:600px;
   color:rgb(117, 23, 23);
   border:none;
   background-color:transparent;
@@ -134,14 +37,208 @@ html,body{
 
 #explain p{
   font:"Lucida Sans Unicode";
-  position: absolute;
-  left:300px;
-  top:100px;
   width:100%;
 }
 
+.sideMenu {
+  width: 20%;
+  float:left;
+}
+
+.iconTop {
+  opacity: 1;
+  display: block;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 0.5em;
+}
+
+.topnav {
+  display: none;
+}
+
+.sideList{
+  font-size:2.5em;
+}
+
+.dList, .ab{
+  text-decoration: none;
+  color:white;
+  font-family: "Lucida Sans Unicode";
+}
+.distribution-list {
+  width: 100%;
+}
+
+.line-dist {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.line-about {
+  padding-top: 1em;
+  padding-bottom: 0em;
+}
+
+.line-white {
+  color: white;
+}
+
+.menuItem {
+  display: block;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.menuAbout {
+  display: block;
+  float:left;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 32%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.about-list {
+  margin-top:0.9em;
+}
+
+.menuAbout a {
+  font-size: 0.9em;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.container {
+  background-color: white;
+  width:80%;
+  height:100%;
+  float:right;
+}
+
+.symbol {
+  clear:top;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  padding-top:2em;
+  padding-bottom:2em;
+  color:black;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
+}
+.h1 {
+  color:black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.videoDistPage {
+  display: block;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  border-bottom: 2px solid black;
+  display: none;
+  overflow: hidden;
+}
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
 
 
+@media (max-width:1150px){
+  .sideMenu {
+    display:none;
+  }
 
+  .container {
+    width:100%;
+  }
 
-  
+  /* Style the navigation menu */
+  .topnav {
+    display:block;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+
+  /* Hide the links inside the navigation menu (except for logo/home) */
+  .topnav #myLinks {
+    display: none;
+  }
+
+  /* Style navigation menu links */
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+
+  /* Style the hamburger menu */
+  .topnav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  /* Add a grey background color on mouse-over */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  /* Style the active link (or home/logo) */
+  .active {
+    background-color: black;
+    color: white;
+  }
+}
