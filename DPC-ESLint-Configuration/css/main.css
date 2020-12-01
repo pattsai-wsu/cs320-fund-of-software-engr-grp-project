@@ -7,17 +7,63 @@ html,body{
       		/*position: fixed;*/
 }
 
+.landingPageContainer {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
+}
+
+.logoContainer {
+  display: block;
+  text-align:center;
+  margin-top: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../image/logo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+  background-position: center;
+  padding: 0.5em;
+  height:100px;
+}
+
+.titleContainer {
+  display: block;
+  text-align:center;
+  margin-top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../image/title1.jpg");
+  background-repeat: no-repeat;
+  background-size: 400px 100px;
+  background-position: center;
+  padding: 0.5em;
+  height:100px;
+}
+
+.logoContainer:hover {
+  background-image: url("../image/logo2.jpg");
+}
+
+.titleContainer:hover {
+  background-image: url("../image/title2.jpg");
+}
+
+.optionsContainer {
+  display: block;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .Binomial,.Geometric,.Negative_binomial,.Hypergeometric,.Possion{
 	font-family: "Lucida Sans Unicode", "Lucida Grande", serif;
-	top:50%;
-	left:50%;
+  font-size:1.1em;
 	width:300px;
-	margin: 0 auto;
-	font-size:100%;
 	color:black;
 	border:2px solid white;
-	position: relative;
-	transform: translateX(-50%) translateY(1000%);
 }
 .Geometric:hover,.Hypergeometric:hover,.Negative_binomial:hover,.Binomial:hover,.Possion:hover{
 	color:white;
@@ -47,59 +93,3 @@ html,body{
 	background:#203C54;
 	border:2px solid #203C54;
 }
-
-.logoContainer,.titleContainer{
-  position: absolute;
-  height:100px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10%);
-}
-.overlay, .overlay1 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: .01s ease;
-}
-.logoContainer:hover .overlay, .titleContainer:hover .overlay1 {
-  opacity: 1;
-}
-.logo, .title1{
-  height: 100px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10%);
-}
-.logo2, .title2 {
-  display: block;
-  height: 100px;
-}
-
-.logoContainer{
-  width: 100px;
-  max-width: 100px;
-  top: 50px;
-}
-.logo2 {
-  width: 100px;
-}
-.logo{
-  width: 100px;
-  top: 10%;
-}
-
-.titleContainer{
-  width:400px;
-  max-width: 400px;
-  top:175px;
-}
-.title2 {
-  width:400px;
-}
-.title1{
-  width:400px;
-  top: 10%;
-}
-	
