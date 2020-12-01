@@ -40,7 +40,7 @@ function callNegativeBinomial(num) {
  *          checkPValue();
  *          checkKXValue();
  *          checkAll();
- *          reset()
+ *          reset();
  * */
 class NegativeBinomial {
   constructor() {
