@@ -133,3 +133,26 @@ html,body{
   text-decoration: none;
   border: none;
 }
+
+@media (max-width:1250px) {
+  .landingPageContainer {
+    width:90%;
+  }
+
+  .optionsContainer {
+    width:60%;
+  }
+
+  .about-list {
+    width:50%;
+  }
+}
+
+@media (max-width:850px) {
+  .optionsContainer {
+    width:90%;
+  }
+  .about-list {
+    width:90%;
+  }
+}
