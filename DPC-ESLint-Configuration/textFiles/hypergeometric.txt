@@ -21,4 +21,5 @@ probability distribution of the hypergeometric variable is called the hypergeome
 denoted by h(x;N,n,k), since they depend on the number of successes k in the set N from which we select n items.
 (Myers, Probability and Statistics for Engineers pg. 152 - 153)
 
-equation:
+equation: h(x; N, n, k) = [combination(k; x) * combination(N-k; n-x)]/combination(N; n)
+
