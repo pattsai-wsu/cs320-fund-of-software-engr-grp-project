@@ -1,3 +1,149 @@
+let hypergeometric;
+let validate;
+
+function callHypergeometric(num) {
+  switch (num) {
+    case 0:// on page load
+      hypergeometric = new hypergeometric();
+      break;
+    case 1:// x
+      hypergeometric.checkX();
+      break;
+    case 2:// n
+      hypergeometric.check_n();
+      break;
+    case 3:// p
+      hypergeometric.checkN();
+      break;
+    case 4:
+      hypergeometric.checkK();
+      break;
+    case 'reset':// reset button
+      hypergeometric.reset();
+      break;
+    case 'calculate':// result button
+      hypergeometric.calculate();
+      break;
+    default:
+      break;
+  }
+}
+
+
+class Hypergeometric {
+  constructor() {
+    validate = new ValidateInput();
+  }
+
+  calculate () {
+    if(checkAll()==true) {
+      document.getElementById("result").disabled = false;
+      const x = document.getElementById('x').value;
+      const n = document.getElementById('n').value;
+      const N = document.getElementById('N').value;
+      const K = document.getElementById('K').value;
+      let temp1 = Combination(K, x);
+      let temp2 = Combination((N - K), (n - x));
+      let temp3 = Combination(N, n);
+      let temp4 = (temp1 * temp2) / temp3;
+      document.getElementById("result").value = (temp4).toFixed(15);
+    }
+    else{
+      document.getElementById("result").value="Invalid Input";
+    }
+  }
+
+  checkX() {
+    const xValue = document.getElementById('x').value;
+    const error = document.getElementById('error1');
+    if (validate.checkIfValidInput(xValue) === true) { // valid for X
+      error.style.color = 'green';
+      error.value = '  ✔';
+      return true;
+    }
+    error.style.color = 'red';
+    error.value = '  Input must be valid';
+    return false;
+  }
+
+  checkN() {
+    const nValue = document.getElementById('N').value;
+    const error = document.getElementById('error2');
+    if (validate.checkIfValidInput(nValue) === true) {
+      if (this.checkNValue() === 1) {
+        error.style.color = 'green';
+        error.value = '  ✔';
+        return true;
+      } else if (this.checkNValue() === -2) {
+        error.style.color = 'red';
+        error.value = '  N must be greater than or equal to n';
+        return false;
+
+      } else {
+        error.style.color = 'red';
+        error.value = ' N must be greater or equal to 1'
+        return false;
+      }
+    }
+    error.style.color = 'red';
+    error.value = '  Input must be valid';
+    return false;
+  }
+
+  check_n() {
+    const nValue = document.getElementById('n').value;
+    const error = document.getElementById('error3');
+    if (validate.checkIfValidInput(nValue) === true) {
+      if (this.check_nValue() === true) {
+        error.style.color = 'green';
+        error.value = '  ✔';
+        return true;
+      }
+      error.style.color = 'red';
+      error.value = '  n must be greater than x';
+      return false;
+    }
+    error.style.color = 'red';
+    error.value = '  Input must be valid';
+    return false;
+  }
+
+  check_nValue() { // n<=x
+    const x = parseFloat(document.getElementById('x').value);
+    const n = parseFloat(document.getElementById('n').value);
+    return n >= x;
+  }
+
+  checkNValue() {
+   // const x = parseFloat(document.getElementById('x').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const N = parseFloat(document.getElementById('N').value);
+
+    if( N >= 1 && N >= n){
+      return 1;
+    }
+    else if( N>= 1){
+      return -2;
+    }
+    else return -3;
+  }
+
+  checkK() {
+    const K = parseFloat(document.getElementById('K').value);
+    const N = parseFloat(document.getElementById('N').value);
+    return K <= N;
+  }
+
+
+
+  }
+
+
+
+
+
+/*
+
 function calculate_hyper(x,n,N,k){
   if(checkAll()==true) {
     document.getElementById("result").disabled = false;
@@ -34,7 +180,7 @@ function factorial(num) {
   }
   return false;
 }*/
-
+/*
 function check(num) {
   if (num == 1) {
     let xValue = document.getElementById("x").value;
@@ -207,3 +353,4 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+*/
