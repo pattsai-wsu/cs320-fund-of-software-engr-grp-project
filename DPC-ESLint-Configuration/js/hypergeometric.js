@@ -42,11 +42,11 @@ class Hypergeometric {
       const n = document.getElementById('n').value;
       const N = document.getElementById('N').value;
       const K = document.getElementById('K').value;
-      let temp1 = Combination(K, x);
-      let temp2 = Combination((N - K), (n - x));
-      let temp3 = Combination(N, n);
-      let temp4 = (temp1 * temp2) / temp3;
-      document.getElementById("result").value = (temp4).toFixed(15);
+      const temp1 = validate.Combination(K, x);
+      const temp2 = validate.Combination((N - K), (n - x));
+      const temp3 = validate.Combination(N, n);
+      const temp4 = (temp1 * temp2) / temp3;
+      document.getElementById("result").value = (temp4);
     }
     else{
       document.getElementById("result").value="Invalid Input";
