@@ -16,7 +16,7 @@ The DPC system is intended for study purposes, its intended use is for student/a
 
 Team members: Vuochlang Chang, Patrick Tsai, Zhicheng Zhou
 
-Current Status: prototype phase 
+Current Status: implementation phase 
 
-Date of update: 11/18/2020
+Date of update: 12/04/2020
 
