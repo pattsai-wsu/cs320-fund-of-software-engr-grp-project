@@ -202,7 +202,7 @@ html,body{
   margin-left: 5px;
 }
 
-.active:after {
+.activePanel:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
