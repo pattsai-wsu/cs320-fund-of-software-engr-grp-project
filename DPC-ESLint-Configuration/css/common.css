@@ -182,7 +182,7 @@ html,body{
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
+.activePanel, .accordion:hover {
   background-color: #ccc;
 }
 
@@ -206,6 +206,9 @@ html,body{
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
+.footerDisplay {
+  display:none;
+}
 
 @media (max-width:1150px){
   .sideMenu {
@@ -218,6 +221,36 @@ html,body{
 
   .symbol {
     width:90%;
+  }
+
+  .footerDisplay{
+    display:block;
+  }
+
+  .mobileAboutListOuter {
+    width:100%;
+    margin-top: 2.5em;
+    border-top: 2px solid black;
+    background-color: white;
+  }
+
+  .mobileAboutList {
+    min-height: 5em;
+    padding-top: 0.7em;
+    width:65%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+  }
+
+  .mobileAbout {
+    width:32%;
+    text-align: center;
+    float:left;
+  }
+  .mobileAbout a {
+    color:black;
+    text-decoration: none;
   }
 
   /* Style the navigation menu */
