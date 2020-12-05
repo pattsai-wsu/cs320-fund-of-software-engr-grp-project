@@ -12,9 +12,8 @@
     //https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
     $(function(){
       $("#includeMobileMenu").load("mobileMenu.html");
-    });
-    $(function(){
       $("#includeSideMenu").load("sideMenu.html");
+      $("#includeFooter").load("footer.html");
     });
   </script>
 </head>
@@ -30,6 +29,7 @@
 </div>
 
 <div class="container">
+  <div class="containerInner">
   <div id="explain">
     <h1 class="h1">Hypergeometric Distribution</h1>
     <hr/>
@@ -86,6 +86,8 @@
     <button onclick="callHypergeometric('calculate');">Result</button><br><br>
   </div>
   <!-- Inputs for the Distribution (End) -->
+    <div id="includeFooter" class="footerDisplay"></div>
+  </div>
 
 </div>
 <script type="text/javascript" src="../js/hypergeometric.js"></script>
