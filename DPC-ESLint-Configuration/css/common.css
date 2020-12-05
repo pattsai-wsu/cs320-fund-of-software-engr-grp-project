@@ -25,14 +25,14 @@ html,body{
 
 .logo{
   width: 160px;
-  height: 200px; 
+  height: 200px;
 }
 
-#error1,#error2,#error3{
+#error1,#error2,#error3,#error4{
   color:rgb(117, 23, 23);
   border:none;
   background-color:transparent;
-  width: 200px;
+  width: 250px;
 }
 
 #explain p{

@@ -40,7 +40,7 @@ class Hypergeometric {
       document.getElementById("result").disabled = false;
       const x = document.getElementById('x').value;
       const n = document.getElementById('n').value;
-      const N = document.getElementById('N').value;
+      const N = document.getElementById('_N').value;
       const K = document.getElementById('K').value;
       const temp1 = validate.Combination(K, x);
       const temp2 = validate.Combination((N - K), (n - x));
@@ -67,8 +67,8 @@ class Hypergeometric {
   }
 
   checkN() {
-    const NValue = document.getElementById('N').value;
-    const error = document.getElementById('error2');
+    const NValue = document.getElementById('_N').value;
+    const error = document.getElementById('error3');
     if (validate.checkIfValidInput(NValue) === true) {
       if (this.checkNValue() === 1) {
         error.style.color = 'green';
@@ -76,7 +76,7 @@ class Hypergeometric {
         return true;
       } else if (this.checkNValue() === -2) {
         error.style.color = 'red';
-        error.value = '  N must be greater than or equal to n';
+        error.value = 'N must be greater than or equal to n';
         return false;
 
       } else {
@@ -92,16 +92,18 @@ class Hypergeometric {
 
   check_n() {
     const nValue = document.getElementById('n').value;
-    const error = document.getElementById('error3');
+    const error = document.getElementById('error2');
     if (validate.checkIfValidInput(nValue) === true) {
       if (this.check_nValue() === true) {
         error.style.color = 'green';
         error.value = '  ✔';
         return true;
       }
-      error.style.color = 'red';
-      error.value = '  n must be greater than x';
-      return false;
+      else {
+        error.style.color = 'red';
+        error.value = '  n must be greater than x';
+        return false;
+      }
     }
     error.style.color = 'red';
     error.value = '  Input must be valid';
@@ -124,7 +126,7 @@ class Hypergeometric {
 
       } else {
         error.style.color = 'red';
-        error.value = ' K must be less than or equal to K'
+        error.value = ' K must be less than or equal to N'
         return false;
       }
     }
@@ -142,7 +144,7 @@ class Hypergeometric {
   checkNValue() {
     // const x = parseFloat(document.getElementById('x').value);
     const n = parseFloat(document.getElementById('n').value);
-    const N = parseFloat(document.getElementById('N').value);
+    const N = parseFloat(document.getElementById('_N').value);
 
     if( N >= 1 && N >= n){
       return 1;
@@ -155,7 +157,7 @@ class Hypergeometric {
 
   checkKValue() {
     const K = parseFloat(document.getElementById('K').value);
-    const N = parseFloat(document.getElementById('N').value);
+    const N = parseFloat(document.getElementById('_N').value);
     const x = parseFloat(document.getElementById('x').value);
     if( K<= N && K >= x){
       return 1;
@@ -178,7 +180,7 @@ class Hypergeometric {
   reset() {
     document.getElementById('x').value = '0';
     document.getElementById('n').value = '0';
-    document.getElementById('N').value = '0';
+    document.getElementById('_N').value = '0';
     document.getElementById('K').value = '0';
     document.getElementById('error1').value = '';
     document.getElementById('error2').value = '';

@@ -10,13 +10,13 @@ function callGeometric(num) {
             geometric.checkX();
             break;
         case 2:// n
-            binomial.checkP();
+            geometric.checkP();
             break;
         case 'reset':// reset button
-            binomial.reset();
+            geometric.reset();
             break;
         case 'calculate':// result button
-            binomial.calculate();
+            geometric.calculate();
             break;
         default:
             break;

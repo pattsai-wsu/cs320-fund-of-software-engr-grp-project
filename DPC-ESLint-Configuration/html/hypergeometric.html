@@ -19,7 +19,7 @@
   </script>
 </head>
 
-<body style="background-color:black;" onload="callBinomial(0)">
+<body style="background-color:black;" onload="callHypergeometric(0)">
 
 <!-- Mobile Top Navigation Menu -->
 <div id="includeMobileMenu" class="topnav">
@@ -68,12 +68,12 @@
     <input type="text" id="error2" disabled><br>
 
     N: <label for="N"></label>
-    <input type="text" name="N" id="N" style="text-align:center;" onkeyup="callHypergeometric(3)">
+    <input type="text" name="N" id="_N" style="text-align:center;" onkeyup="callHypergeometric(3)">
 
     <label for="error3">
     </label><input type="text" id="error3" disabled><br>
 
-    K: <label for="N"></label>
+    K: <label for="K"></label>
     <input type="text" name="K" id="K" style="text-align:center;" onkeyup="callHypergeometric(4)">
 
     <label for="error4">
@@ -82,13 +82,13 @@
     Result: <label for="result"></label>
     <input type="text" name="Result" id="result" style="text-align:center;" disabled><br>
 
-    <button onclick="callBinomial('reset');">Reset</button>
-    <button onclick="callBinomial('calculate');">Result</button><br><br>
+    <button onclick="callHypergeometric('reset');">Reset</button>
+    <button onclick="callHypergeometric('calculate');">Result</button><br><br>
   </div>
   <!-- Inputs for the Distribution (End) -->
 
 </div>
-<script type="text/javascript" src="../js/binomial.js"></script>
+<script type="text/javascript" src="../js/hypergeometric.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/accordian.js"></script>
 </body>
