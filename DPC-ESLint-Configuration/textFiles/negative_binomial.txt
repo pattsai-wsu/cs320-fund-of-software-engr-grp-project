@@ -11,3 +11,4 @@ outcome. Each success occurs with prooability p and each failure with probabilit
 (Myers, Probability and Statistics for Engineers pg. 158 - 159)
 
 equation:
+p(x;r;p) = (x+r-1; r-1) * p^r * (1-p)^x

@@ -25,3 +25,4 @@ occurrence of outcomes, we shall denote them by p(x;lambda*t)... The following f
 probabilities.
 
 equation:
+P(x; μ) = [(e^-μ) * (μ^x)] / x!
