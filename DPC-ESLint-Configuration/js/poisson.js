@@ -1,50 +1,66 @@
-let poisson; // instance of Poisson class
+let poissonView; // instance of Poisson View class - using Model View Control design
+let poissonController; // instance of Poisson Controller class - using Model View Control design
+let poissonModel; // instance of Poisson Model class - using Model View Control design
 let validate; // instance of ValidateInput class
 
 /**
- *Function: callPoisson(data)-call appropriate method of the Poisson class as needed
+ *Function: callPoissonInit- create an instance for each class Model, View, Control
  * */
-function callPoisson(num) {
-  switch (num) {
-    case 0:// on page load
-      poisson = new Poisson();
-      break;
-    case 1:// x
-      poisson.checkX();
-      break;
-    case 2:// n
-      poisson.checkN();
-      break;
-    case 3:// p
-      poisson.checkP();
-      break;
-    case 'reset':// reset button
-      poisson.reset();
-      break;
-    case 'calculate':// result button
-      poisson.calculate();
-      break;
-    default:
-      break;
+function callPoissonInit() {
+  poissonView = new PoissonView();
+  poissonController = new PoissonController();
+  poissonModel = new PoissonModel();
+}
+
+/**
+ *Class: Poisson View - this will be an observer and update when the model updates
+ *consists of:
+ *          constructor();
+ *          updateView()
+ * */
+class PoissonView {
+  constructor() {
+  }
+
+  inputChange() {
+    const x = parseFloat(document.getElementById('x').value);
+    const lambda = parseFloat(document.getElementById('lambda').value);
+    let xValidate = poissonController.validateInputX(x);
+    let lambdaValidate = poissonController.validateInputLambda(lambda);
+
+  }
+
+  updateView() {
+
   }
 }
 
 /**
- *Class: Poisson - all methods that binomial will be needed
+ *Class: Poisson Controller - all methods that binomial will be needed
  *consists of:
  *          constructor();
  *          calculate();
  *          checkX();
- *          checkN();
- *          checkP();
- *          checkPValue();
- *          checkNXValue();
+ *          checkLambda();
  *          checkAll();
  *          reset()
  * */
-class Poisson {
+class PoissonController {
   constructor() {
-    validate = new ValidateInput();
+  }
+
+  validateInputX(x) {
+    this.x = x;
+    if(Number.isInteger(x) && x>0) {
+      return true;
+    }
+  }
+
+  validateInputLambda(lambda) {
+    this.lambda = lambda;
+    if(Number.isNaN(lambda) && lambda>0) {
+      return true;
+    }
   }
 
   /**
@@ -57,9 +73,7 @@ class Poisson {
     if (this.checkAll() === true) {
       document.getElementById('result').disabled = false;
       const x = document.getElementById('x').value;
-      const n = document.getElementById('n').value;
-      const p = document.getElementById('p').value;
-      const v1 = validate.Combination(n, x);
+      const lambda = document.getElementById('lambda').value;
       const v2 = Math.pow(p, x);
       const v3 = Math.pow(1 - p, n - x);
       document.getElementById('result').value = (v1 * v2 * v3);
@@ -95,7 +109,7 @@ class Poisson {
    *    _if all rules have been satisfied - print a check mark in the error box
    *    _else - print the error message accordingly
    * */
-  checkN() {
+  checkLambda() {
     const nValue = document.getElementById('n').value;
     const error = document.getElementById('error2');
     if (validate.checkIfValidInput(nValue) === true) {
@@ -111,56 +125,6 @@ class Poisson {
     error.style.color = 'red';
     error.value = '  Input must be valid';
     return false;
-  }
-
-  /**
-   * Function: checkP()
-   *  Rule: p value must be a valid float number, and p=[0,1]
-   *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
-   * */
-  checkP() {
-    const pValue = document.getElementById('p').value;
-    const error = document.getElementById('error3');
-    if (validate.checkIfValidInput(pValue) === true) {
-      if (this.checkPValue() === true) {
-        error.style.color = 'green';
-        error.value = '✔';
-        return true;
-      }
-      error.style.color = 'red';
-      error.value = '  p must between 1 and 0';
-      return false;
-    }
-    error.style.color = 'red';
-    error.value = '  Input must be valid';
-    return false;
-  }
-
-  /**
-   * Function: checkPValue()
-   *  Rule: p=[0,1]
-   *  Return:
-   *    _true - if p<=1 and p>=0
-   *    _false - if p>1 or p<0
-   * */
-  checkPValue() {
-    const p = document.getElementById('p').value;
-    return !(p > 1 || p < 0);
-  }
-
-  /**
-   * Function: checkNXValue()
-   *  Rule: n >= x
-   *  Return:
-   *    _true - if n >= x
-   *    _false - if n < x
-   * */
-  checkNXValue() { // n<=x
-    const x = parseFloat(document.getElementById('x').value);
-    const n = parseFloat(document.getElementById('n').value);
-    return n >= x;
   }
 
   /**

@@ -19,7 +19,7 @@
   </script>
 </head>
 
-<body style="background-color:black;" onload="callPoisson(0)">
+<body style="background-color:black;" onload="callPoissonInit()">
 
 <!-- Mobile Top Navigation Menu -->
 <div id="includeMobileMenu" class="topnav">
@@ -57,13 +57,13 @@
     <!-- Inputs for the Distribution (START) -->
     <div class="symbol">
       x: <label for="x"></label>
-      <input type="text" name="x" id="x" style="text-align:center;" onkeyup="callPoisson(1)">
+      <input type="text" name="x" id="x" style="text-align:center;" onkeyup="poissonView.inputChangeX()">
 
       <label for="error1"></label>
       <input type="text" id="error1" disabled><br>
 
-      n: <label for="lambda"></label>
-      <input type="text" name="lambda" id="lambda" style="text-align:center;" onkeyup="callPoisson(2)">
+      &#923;: <label for="lambda"></label>
+      <input type="text" name="lambda" id="lambda" style="text-align:center;" onkeyup="poissonView.inputChangeLambda()">
 
       <label for="error2"></label>
       <input type="text" id="error2" disabled><br>
@@ -71,14 +71,14 @@
       Result: <label for="result"></label>
       <input type="text" name="Result" id="result" style="text-align:center;" disabled><br>
 
-      <button onclick="callPoisson('reset');">Reset</button>
-      <button onclick="callPoisson('calculate');">Result</button><br><br>
+      <button onclick="poissonView.reset();">Reset</button>
+      <button onclick="poissonView.calculate();">Result</button><br><br>
     </div>
     <!-- Inputs for the Distribution (End) -->
     <div id="includeFooter" class="footerDisplay"></div>
   </div>
 </div>
-<script type="text/javascript" src="../js/poisson.js"></script>
+<script type="text/javascript" src="../js/testPoisson.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/accordian.js"></script>
 </body>

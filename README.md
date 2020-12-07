@@ -18,5 +18,7 @@ Team members: Vuochlang Chang, Patrick Tsai, Zhicheng Zhou
 
 Current Status: implementation phase 
 
-Date of update: 12/04/2020
+website (not necessarily the latest GitHub version): https://dpc.patricktsai.com/html/main.html
+
+Date of update: 12/06/2020
 
