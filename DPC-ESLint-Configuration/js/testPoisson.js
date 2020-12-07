@@ -2,7 +2,6 @@ let poissonView; // instance of Poisson View class - using Model View Control de
 let poissonController; // instance of Poisson Controller class - using Model View Control design
 let poissonModel; // instance of Poisson Model class - using Model View Control design
 
-
 /**
  *Function: callPoissonInit- create an instance for each class Model, View, Control
  * */
@@ -15,8 +14,6 @@ function callPoissonInit() {
 /**
  *Class: Poisson View - this will be an observer and update when the model updates
  *consists of:
- *          constructor();
- *          updateView()
  * */
 class PoissonView {
   constructor() {
@@ -39,12 +36,10 @@ class PoissonView {
     if(isXInputTrue === true) {
       error1.style.color = 'green';
       error1.value = '  ✔';
-      console.log("X: Yes, you entered a positive integer");
     }
     else {
       error1.style.color = 'red';
       error1.value = '  Input must be positive Integer';
-      console.log("X: Input must be positive integer");
     }
   }
 
@@ -53,12 +48,10 @@ class PoissonView {
     if(isLambdaInputTrue === true) {
       error2.style.color = 'green';
       error2.value = '  ✔';
-      console.log("Lambda: Yes, you entered a positive number");
     }
     else {
       error2.style.color = 'red';
       error2.value = '  Input must be positive number';
-      console.log("Lambda: Input must be a positve number");
     }
   }
 
@@ -80,22 +73,21 @@ class PoissonView {
       document.getElementById('result').value = 'Invalid Input - missing value';
     }
   }
-  updateView() {
 
+  /**
+   * Function: reset() - reset the value of the input boxes to 0 and empty the value of error boxes
+   * */
+  reset() {
+    document.getElementById('x').value = '';
+    document.getElementById('lambda').value = '';
+    document.getElementById('error1').value = '';
+    document.getElementById('error2').value = '';
+    document.getElementById('result').value = '';
   }
 }
 
 /**
  *Class: Poisson Controller - all methods that binomial will be needed
- *consists of:
- *          constructor();
- *          calculate();
- *          checkX();
- *          validateInputX();
- *          validateInputLambda();
- *          checkLambda();
- *          checkAll();
- *          reset()
  * */
 class PoissonController {
   constructor() {
@@ -103,43 +95,43 @@ class PoissonController {
 
   validateInputX(x) {
     this.xInputVal = x.toString();
-    console.log("X length after passed to Controller" + this.xInputVal.length);
     for (let i = 0; i < this.xInputVal.length; i++) { // loop to run through each character of the input
       if (this.xInputVal.charCodeAt(i) < 48 || this.xInputVal.charCodeAt(i) > 57) {
-        console.log("X value resolves false");
         poissonView.updateXInput(false);
         return false;
       }
     }
     if(this.xInputVal.length > 0) {
-      console.log("X value resolves true");
       poissonView.updateXInput(true);
       return true;
     }
     else {
-      console.log("X value resolves false");
       poissonView.updateXInput(false);
       return false;
     }
   }
 
   validateInputLambda(lambda) {
+    let decCount = 0;
     this.lambdaInputVal = lambda.toString();
-    console.log("lambda length after passed to Controller" + this.lambdaInputVal.length);
     for (let i = 0; i < this.lambdaInputVal.length; i++) { // loop to run through each character of the input
       if ((this.lambdaInputVal.charCodeAt(i) < 48 || this.lambdaInputVal.charCodeAt(i) > 57) && this.lambdaInputVal.charCodeAt(i) !== 46) {
-        console.log("lambda value resolves false");
         poissonView.updateLambdaInput(false);
         return false;
       }
+      if(this.lambdaInputVal.charCodeAt(i) === 46) {
+        decCount++;
+        if(decCount > 1) {
+          poissonView.updateLambdaInput(false);
+          return false;
+        }
+      }
     }
     if(this.lambdaInputVal.length > 0) {
-      console.log("Lambda value resolves true");
       poissonView.updateLambdaInput(true);
       return true;
     }
     else {
-      console.log("lambda value resolves false");
       poissonView.updateLambdaInput(false);
       return false;
     }
@@ -150,42 +142,25 @@ class PoissonController {
     return ans;
   }
 
-  /**
-   * Function: reset() - reset the value of the input boxes to 0 and empty the value of error boxes
-   * */
-  reset() {
-    document.getElementById('x').value = '0';
-    document.getElementById('lambda').value = '0';
-    document.getElementById('error1').value = '';
-    document.getElementById('error2').value = '';
-    document.getElementById('result').value = '';
-  }
 }
 
 class PoissonModel {
   constructor() {
   }
-  /**
-   *Function: calculate()
-   *Return:
-   *_if all input are valid - do the computation for Poisson and display result
-   *_if at least one of the input is invalid - print error message in the result box
-   * */
+
   calculate(x,lambda) {
-      //const x = document.getElementById('x').value;
-      //const lambda = document.getElementById('lambda').value;
-      //document.getElementById('result').value = (v1 * v2 * v3);
     this.x=parseInt(x);
     this.lambda=parseFloat(lambda);
-    let sum = this.x + this.lambda;
-    console.log(sum);
+    this.negLambda = -1 * this.lambda;
+    let numerator = (Math.pow(2.718281828459045235,this.negLambda))*(Math.pow(this.lambda,this.x));
+    let denomiator = poissonModel.factorial(x);
+    this.factDenom = parseInt(denomiator);
+    let sum = numerator/this.factDenom;
     return (sum);
   }
+
+  factorial(n) {
+    if (n === 0) return 1;
+    return n * this.factorial(n - 1);
+  }
 }
-/*
-let x = 4;
-let lambda = 15.3;
-callPoissonInit();
-poissonView.inputChange(x,lambda);
-poissonModel.calculate(x,lambda);
-*/

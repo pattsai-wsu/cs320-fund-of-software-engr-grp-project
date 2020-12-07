@@ -4,12 +4,12 @@ The average number of homes sold by the Acme Realty company is 2 homes per day. 
 
 Solution: This is a Poisson experiment in which we know the following:
 
-μ = 2; since 2 homes are sold per day, on average.
+λ = 2; since 2 homes are sold per day, on average.
 x = 3; since we want to find the likelihood that 3 homes will be sold tomorrow.
 e = 2.71828; since e is a constant equal to approximately 2.71828.
 We plug these values into the Poisson formula as follows:
 
-P(x; μ) = (e^-μ) (μ^x) / x!
+P(x; λ) = (e^-λ) (λ^x) / x!
 
 P(3; 2) = (2.71828-2) (23) / 3!
 
