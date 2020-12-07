@@ -25,22 +25,13 @@ class PoissonView {
   inputChangeX() {
     const x = document.getElementById('x').value;
     poissonController.validateInputX(x);
+    document.getElementById('result').value = '';
   }
 
   inputChangeLambda() {
     const lambda = document.getElementById('lambda').value;
     poissonController.validateInputLambda(lambda);
-  }
-
-  updateCalculateButton(isTrue) {
-    if(isTrue === true) {
-      document.getElementById('result').disabled = false;
-      //console.log("calculate button enabled");
-    }
-    else {
-      document.getElementById('result').disabled = true;
-      //console.log("calculate button disabled");
-    }
+    document.getElementById('result').value = '';
   }
 
   updateXInput(isXInputTrue) {
@@ -74,9 +65,20 @@ class PoissonView {
   calculate() {
     const x = document.getElementById('x').value;
     const lambda = document.getElementById('lambda').value;
-    let probabilityAns = poissonController.calculate(x,lambda);
-
-    document.getElementById('result').value = probabilityAns ;
+    if (x.toString().length > 0 && lambda.toString().length > 0) {
+      let xCheckValid = poissonController.validateInputX(x);
+      let lambdaCheckValid = poissonController.validateInputLambda(lambda);
+      if(xCheckValid === true && lambdaCheckValid === true) {
+        let probabilityAns = poissonController.calculate(x, lambda);
+        document.getElementById('result').value = probabilityAns;
+      }
+      else {
+        document.getElementById('result').value = 'Invalid Input';
+      }
+    }
+    else {
+      document.getElementById('result').value = 'Invalid Input - missing value';
+    }
   }
   updateView() {
 
@@ -106,16 +108,18 @@ class PoissonController {
       if (this.xInputVal.charCodeAt(i) < 48 || this.xInputVal.charCodeAt(i) > 57) {
         console.log("X value resolves false");
         poissonView.updateXInput(false);
-        return;
+        return false;
       }
     }
     if(this.xInputVal.length > 0) {
       console.log("X value resolves true");
       poissonView.updateXInput(true);
+      return true;
     }
     else {
       console.log("X value resolves false");
       poissonView.updateXInput(false);
+      return false;
     }
   }
 
@@ -126,16 +130,18 @@ class PoissonController {
       if ((this.lambdaInputVal.charCodeAt(i) < 48 || this.lambdaInputVal.charCodeAt(i) > 57) && this.lambdaInputVal.charCodeAt(i) !== 46) {
         console.log("lambda value resolves false");
         poissonView.updateLambdaInput(false);
-        return;
+        return false;
       }
     }
     if(this.lambdaInputVal.length > 0) {
       console.log("Lambda value resolves true");
       poissonView.updateLambdaInput(true);
+      return true;
     }
     else {
       console.log("lambda value resolves false");
       poissonView.updateLambdaInput(false);
+      return false;
     }
   }
 
@@ -169,8 +175,8 @@ class PoissonModel {
       //const x = document.getElementById('x').value;
       //const lambda = document.getElementById('lambda').value;
       //document.getElementById('result').value = (v1 * v2 * v3);
-    this.x=x;
-    this.lambda=lambda;
+    this.x=parseInt(x);
+    this.lambda=parseFloat(lambda);
     let sum = this.x + this.lambda;
     console.log(sum);
     return (sum);
