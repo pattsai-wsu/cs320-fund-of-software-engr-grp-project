@@ -17,3 +17,4 @@ obtain the general formulas, or simply multiply p^x*q^(n-x) by (n over x).
 (Myers, Probability and Statistics for Engineers pg. 143 - 145)
 
 equation:
+b(x; n, P) = (n;x)*p^x*q^(n-x) where q = 1-p
