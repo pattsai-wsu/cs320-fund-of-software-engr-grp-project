@@ -8,6 +8,10 @@
  *          Factorial(n);
  * * */
 class ValidateInput {
+  constructor() {
+    this.isDecimal = false;
+  }
+
   /**
    * Function: checkIfValidInput(data)
    * return true, if the given data is a valid float numbers, eg: 0.2, 45
@@ -35,6 +39,7 @@ class ValidateInput {
   checkNumberOnly(value) {
     this.value = value;
     let getDecimal = false;
+    this.isDecimal = false;
     for (let i = 0; i < this.value.length; i++) { // loop to run through each character of the input
       if (getDecimal === false) {
         if (this.value.charCodeAt(i) !== 46) { // check if each character is either 0-9 or decimal
@@ -44,6 +49,7 @@ class ValidateInput {
         }
         if (this.value.charCodeAt(i) === 46) { // check if that specific character is a decimal point and set flag
           getDecimal = true;
+          this.isDecimal = true;
           if ((i + 1) === this.value.length) return false;
           i++;
         }
