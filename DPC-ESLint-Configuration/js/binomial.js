@@ -11,15 +11,15 @@ function callBinomial(num) {
       break;
     case 1:// x
       binomial.x = document.getElementById('x').value;
-      binomial.checkX();
+      binomial.verifyX();
       break;
     case 2:// n
       binomial.n = document.getElementById('n').value;
-      binomial.checkN();
+      binomial.verifyN();
       break;
     case 3:// p
       binomial.p = document.getElementById('p').value;
-      binomial.checkP();
+      binomial.verifyP();
       break;
     case 'reset':// reset button
       binomial.reset();
@@ -34,16 +34,6 @@ function callBinomial(num) {
 
 /**
  *Class: Binomial - all methods that binomial will be needed
- *consists of:
- *          constructor();
- *          calculate();
- *          checkX();
- *          checkN();
- *          checkP();
- *          checkPValue();
- *          checkNXValue();
- *          checkAll();
- *          reset()
  * */
 class Binomial {
   constructor() {
@@ -57,6 +47,55 @@ class Binomial {
     this.result = document.getElementById('result');
   }
 
+  verifyX() {
+    if (this.checkX() === true) {
+      this.error1.style.color = 'green';
+      this.error1.value = '✔';
+    } else {
+      this.x = -1;
+      this.error1.style.color = 'red';
+      this.error1.value = 'Input must be valid Integer';
+    }
+  }
+
+  verifyN() {
+    switch (this.checkN()) {
+      case 1: // when n is less than 1
+        this.n = -1;
+        this.error2.style.color = 'red';
+        this.error2.value = 'n must be at least 1';
+        break;
+      case 2: // when n is not valid Integer
+        this.n = -1;
+        this.error2.style.color = 'red';
+        this.error2.value = 'Input must be valid Integer';
+        break;
+      default: // when n is valid
+        this.error2.style.color = 'green';
+        this.error2.value = '✔';
+        break;
+    }
+  }
+
+  verifyP() {
+    switch (this.checkP()) {
+      case 1: // when p is out of range
+        this.p = -1;
+        this.error3.style.color = 'red';
+        this.error3.value = 'p must between 1 and 0';
+        break;
+      case 2: // when p is not valid
+        this.p = -1;
+        this.error3.style.color = 'red';
+        this.error3.value = 'Input must be valid';
+        break;
+      default: // when p is valid
+        this.error3.style.color = 'green';
+        this.error3.value = '✔';
+        break;
+    }
+  }
+
   /**
    *Function: calculate()
    *Return:
@@ -66,96 +105,68 @@ class Binomial {
   calculate() {
     if (this.checkAll() === true) {
       this.result.disabled = false;
-      const v1 = validate.Combination(this.n, this.x);
-      const v2 = Math.pow(this.p, this.x);
-      const v3 = Math.pow(1 - this.p, this.n - this.x);
       this.result.style.color = 'black';
-      this.result.value = (v1 * v2 * v3);
+      this.result.value = this.binomialFormula();
     } else {
       this.result.style.color = 'red';
       this.result.value = 'Invalid Input';
     }
-    return this.result.value;
+  }
+
+  /**
+   *Function: binomialFormula() - computation of Binomial
+   * */
+  binomialFormula() {
+    const v1 = validate.Combination(this.n, this.x);
+    const v2 = Math.pow(this.p, this.x);
+    const v3 = Math.pow(1 - this.p, this.n - this.x);
+    return (v1 * v2 * v3);
   }
 
   /**
    *Function: checkX()
-   *  Rule: x value must be a valid float number
+   *  Rule: x value must be a valid Integer
    *  Return:
-   *    _if the rule has not been satisfied - print a red error message in the error box
-   *    _else - print a check mark in the error box
+   *    _if the rule has not been satisfied - return false
+   *    _else - return true
    * */
   checkX() {
     if (validate.checkIfValidInput(this.x) === true && validate.isDecimal === false) { // valid for X
-      this.error1.style.color = 'green';
-      this.error1.value = '✔';
       return true;
     }
-    this.x = -1;
-    this.error1.style.color = 'red';
-    this.error1.value = 'Input must be valid Integer';
     return false;
   }
 
   /**
    * Function: checkN()
-   *  Rule: n value must be a valid float number, and n >= x
+   *  Rule: n value must be a valid Integer number, n>=1
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _if n is not valid, return 2
+   *    _if n is valid but n<1, return 1
+   *    _else - return 3
    * */
   checkN() {
     if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
-      if (this.n < 1) {
-        this.n = -1;
-        this.error2.style.color = 'red';
-        this.error2.value = 'n must be at least 1';
-        return false;
-      }
-      this.error2.style.color = 'green';
-      this.error2.value = '✔';
-      return true;
+      if (this.n < 1) return 1;
+      return 3;
     }
-    this.n = -1;
-    this.error2.style.color = 'red';
-    this.error2.value = 'Input must be valid Integer';
-    return false;
+    return 2;
   }
 
   /**
    * Function: checkP()
    *  Rule: p value must be a valid float number, and p=[0,1]
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _3: if all rules have been satisfied - print a check mark in the error box
+   *    _2: if p value is not valid
+   *    _1: if p is greater than 1
    * */
   checkP() {
     if (validate.checkIfValidInput(this.p) === true) {
-      if (this.p <= 1 && this.p >= 0) {
-        this.error3.style.color = 'green';
-        this.error3.value = '✔';
-        return true;
-      }
-      this.p = -1;
-      this.error3.style.color = 'red';
-      this.error3.value = 'p must between 1 and 0';
-      return false;
+      if (this.p <= 1 && this.p >= 0) return 3;
+      return 1;
     }
-    this.p = -1;
-    this.error3.style.color = 'red';
-    this.error3.value = 'Input must be valid';
-    return false;
-  }
-
-  /**
-   * Function: checkNXValue()
-   *  Rule: n >= x
-   *  Return:
-   *    _true - if n >= x
-   *    _false - if n < x
-   * */
-  checkNXValue() { // n>=x
-    return this.n >= this.x;
+    return 2;
   }
 
   /**
@@ -171,13 +182,14 @@ class Binomial {
       this.result.value = 'Invalid Input';
       return false;
     }
-    if (this.checkNXValue() === false) {
+    if (this.n < this.x) {
       this.error1.value = 'x must be less than or equal n';
       this.error2.value = '!';
       return false;
     }
     this.error1.value = '✔';
     this.error2.value = '✔';
+    this.error3.value = '✔';
     return true;
   }
 

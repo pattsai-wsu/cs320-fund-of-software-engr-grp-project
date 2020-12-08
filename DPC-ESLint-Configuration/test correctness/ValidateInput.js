@@ -56,16 +56,4 @@ describe('Test for Correctness', function () {
       });
     });
   });
-
-  describe('CLASS:  Binomial', function () {
-    const b = new Binomial();
-    describe('Function:  checkX()', function () {
-      it('when x=4.5, checkX() should return false', function () {
-        chai.expect(b.checkX()).to.be.false;
-      });
-      it('when x=7, checkX() should return true', function () {
-        chai.expect(b.checkX()).to.be.true;
-      });
-    });
-  });
 });
