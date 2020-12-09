@@ -2,23 +2,23 @@ let nBinomial; // instance of Binomial class
 let validate; // instance of ValidateInput class
 
 /**
- *Function: callNegativeBinomial(data)-call appropriate method of the Binomial class as needed
+ *Function: callNegativeBinomial(data)-call appropriate method of the Negative Binomial class as needed
  * */
-function callNegativeBinomial(num) {
+function callNegativeBinomial(num, value, value2, value3) {
   switch (num) {
     case 0:// on page load
-      nBinomial = new NegativeBinomial();
+      nBinomial = new NegativeBinomial(value, value2, value3);
       break;
     case 1:// x
-      nBinomial.x = document.getElementById('x').value;
+      nBinomial.x = value;
       nBinomial.verifyX();
       break;
     case 2:// k
-      nBinomial.k = document.getElementById('k').value;
+      nBinomial.k = value;
       nBinomial.verifyK();
       break;
     case 3:// p
-      nBinomial.p = document.getElementById('p').value;
+      nBinomial.p = value;
       nBinomial.verifyP();
       break;
     case 'reset':// reset button
@@ -34,26 +34,16 @@ function callNegativeBinomial(num) {
 
 /**
  *Class: NegativeBinomial - all methods that negative-binomial will be needed
- *consists of:
- *          constructor();
- *          calculate();
- *          checkX();
- *          checkK();
- *          checkP();
- *          checkPValue();
- *          checkKXValue();
- *          checkAll();
- *          reset();
  * */
 class NegativeBinomial {
-  constructor() {
+  constructor(a, b, c) {
     validate = new ValidateInput();
     this.x = -1;
     this.k = -1;
     this.p = -1;
-    this.error1 = document.getElementById('error1');
-    this.error2 = document.getElementById('error2');
-    this.error3 = document.getElementById('error3');
+    this.error1 = a;
+    this.error2 = b;
+    this.error3 = c;
     this.result = document.getElementById('result');
   }
 
@@ -113,9 +103,6 @@ class NegativeBinomial {
    *_if at least one of the input is invalid - print error message in the result box
    * */
   calculate() {
-    this.x = document.getElementById('x').value;
-    this.k = document.getElementById('k').value;
-    this.p = document.getElementById('p').value;
     if (this.checkAll() === true) {
       this.result.disabled = false;
       this.result.style.color = 'black';
@@ -137,11 +124,12 @@ class NegativeBinomial {
   }
 
   /**
-   *Function: checkX()
-   *  Rule: x value must be a valid float number and x>=1
+   * Function: checkX()
+   *  Rule: x value must be a valid Integer number, x>=1
    *  Return:
-   *    _if the rule has not been satisfied - print a red error message in the error box
-   *    _else - print a check mark in the error box
+   *    _if x is not valid, return 2
+   *    _if x is valid but x<1, return 1
+   *    _else - return 3
    * */
   checkX() {
     if (validate.checkIfValidInput(this.x) === true && validate.isDecimal === false) {
@@ -152,11 +140,11 @@ class NegativeBinomial {
   }
 
   /**
-   * Function: checkK()
-   *  Rule: k value must be a valid float number, and k <= x
+   *Function: checkK()
+   *  Rule: k value must be a valid Integer
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _if the rule has not been satisfied - return false
+   *    _else - return true
    * */
   checkK() {
     if (validate.checkIfValidInput(this.k) === true && validate.isDecimal === false) { // valid for X
@@ -169,8 +157,9 @@ class NegativeBinomial {
    * Function: checkP()
    *  Rule: p value must be a valid float number, and p=[0,1]
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _3: if all rules have been satisfied - print a check mark in the error box
+   *    _2: if p value is not valid
+   *    _1: if p is greater than 1
    * */
   checkP() {
     if (validate.checkIfValidInput(this.p) === true) {
@@ -182,13 +171,13 @@ class NegativeBinomial {
 
   /**
    * Function: checkAll()
-   *  Rules: x, k, and p are valid float number, x>=1, k<=x and p=[0,1]
+   *  Rules: x, k, and p are valid number, x>=k and p=[0,1]
    *  Return:
    *    _true - if all rules have been satisfied
    *    _false - if at least one of the rules has not been satisfied
    * */
   checkAll() {
-    if (this.p === -1 || this.x === -1 || this.k === -1) {
+    if (this.checkK() !== true || this.checkX() !== 3 || this.checkP() !== 3) {
       this.result.style.color = 'red';
       this.result.value = 'Invalid Input';
       return false;

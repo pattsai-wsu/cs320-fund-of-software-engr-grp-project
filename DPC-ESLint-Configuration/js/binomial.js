@@ -4,21 +4,21 @@ let validate; // instance of ValidateInput class
 /**
  *Function: callBinomial(data)-call appropriate method of the Binomial class as needed
  * */
-function callBinomial(num) {
+function callBinomial(num, value, value2, value3) {
   switch (num) {
     case 0:// on page load
-      binomial = new Binomial();
+      binomial = new Binomial(value, value2, value3);
       break;
     case 1:// x
-      binomial.x = document.getElementById('x').value;
+      binomial.x = value;
       binomial.verifyX();
       break;
     case 2:// n
-      binomial.n = document.getElementById('n').value;
+      binomial.n = value;
       binomial.verifyN();
       break;
     case 3:// p
-      binomial.p = document.getElementById('p').value;
+      binomial.p = value;
       binomial.verifyP();
       break;
     case 'reset':// reset button
@@ -36,14 +36,14 @@ function callBinomial(num) {
  *Class: Binomial - all methods that binomial will be needed
  * */
 class Binomial {
-  constructor() {
+  constructor(a, b, c) {
     validate = new ValidateInput();
     this.x = -1;
     this.n = -1;
     this.p = -1;
-    this.error1 = document.getElementById('error1');
-    this.error2 = document.getElementById('error2');
-    this.error3 = document.getElementById('error3');
+    this.error1 = a;
+    this.error2 = b;
+    this.error3 = c;
     this.result = document.getElementById('result');
   }
 
@@ -103,9 +103,6 @@ class Binomial {
    *_if at least one of the input is invalid - print error message in the result box
    * */
   calculate() {
-    this.x = document.getElementById('x').value;
-    this.n = document.getElementById('n').value;
-    this.p = document.getElementById('p').value;
     if (this.checkAll() === true) {
       this.result.disabled = false;
       this.result.style.color = 'black';
@@ -174,13 +171,13 @@ class Binomial {
 
   /**
    * Function: checkAll()
-   *  Rules: x, n, and p are valid float number, n >=x and p=[0,1]
+   *  Rules: x, n, and p are valid number, n >=x and p=[0,1]
    *  Return:
    *    _true - if all rules have been satisfied
    *    _false - if at least one of the rules has not been satisfied
    * */
   checkAll() {
-    if (this.p === -1 || this.x === -1 || this.n === -1) {
+    if (this.checkX() !== true || this.checkN() !== 3 || this.checkP() !== 3) {
       this.result.style.color = 'red';
       this.result.value = 'Invalid Input';
       return false;
