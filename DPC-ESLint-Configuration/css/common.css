@@ -169,6 +169,13 @@ html,body{
   padding-bottom: 0.5em;
 }
 
+.termsPage {
+  width:60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 2em;
+}
+
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
   background-color: #eee;
@@ -258,6 +265,13 @@ html,body{
   .mobileAbout a {
     color:black;
     text-decoration: none;
+  }
+
+  .termsPage {
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0.4em;
   }
 
   /* Style the navigation menu */
