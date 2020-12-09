@@ -156,6 +156,7 @@ html,body{
 .h1 {
   color:black;
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 .videoDistPage {
@@ -179,7 +180,12 @@ html,body{
   border: none;
   outline: none;
   transition: 0.4s;
-  font-family: "Lucida SANS Unicode";
+  font-family: "Helvetica", serif;
+  font-size: 17px;
+  font-weight: bold;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -296,9 +302,4 @@ html,body{
     background-color: black;
     color: white;
   }
-}
-
-#para1{
-    font-family: "Times New Roman", Times, serif;
-    font-size: 14px;
 }

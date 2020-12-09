@@ -103,6 +103,9 @@ class Binomial {
    *_if at least one of the input is invalid - print error message in the result box
    * */
   calculate() {
+    this.x = document.getElementById('x').value;
+    this.n = document.getElementById('n').value;
+    this.p = document.getElementById('p').value;
     if (this.checkAll() === true) {
       this.result.disabled = false;
       this.result.style.color = 'black';
@@ -200,10 +203,10 @@ class Binomial {
     document.getElementById('x').value = '';
     document.getElementById('n').value = '';
     document.getElementById('p').value = '';
-    document.getElementById('error1').value = '';
-    document.getElementById('error2').value = '';
-    document.getElementById('error3').value = '';
-    document.getElementById('result').value = '';
+    this.error1.value = '';
+    this.error2.value = '';
+    this.error3.value = '';
+    this.result.value = '';
     this.n = -1;
     this.p = -1;
     this.x = -1;
