@@ -2,21 +2,24 @@ let nBinomial; // instance of Binomial class
 let validate; // instance of ValidateInput class
 
 /**
- *Function: callNegativeBinomial(data)-call appropriate method of the Binomial class as needed
+ *Function: callNegativeBinomial(data)-call appropriate method of the Negative Binomial class as needed
  * */
-function callNegativeBinomial(num) {
+function callNegativeBinomial(num, value, value2, value3) {
   switch (num) {
     case 0:// on page load
-      nBinomial = new NegativeBinomial();
+      nBinomial = new NegativeBinomial(value, value2, value3);
       break;
     case 1:// x
-      nBinomial.checkX();
+      nBinomial.x = value;
+      nBinomial.verifyX();
       break;
     case 2:// k
-      nBinomial.checkK();
+      nBinomial.k = value;
+      nBinomial.verifyK();
       break;
     case 3:// p
-      nBinomial.checkP();
+      nBinomial.p = value;
+      nBinomial.verifyP();
       break;
     case 'reset':// reset button
       nBinomial.reset();
@@ -31,20 +34,66 @@ function callNegativeBinomial(num) {
 
 /**
  *Class: NegativeBinomial - all methods that negative-binomial will be needed
- *consists of:
- *          constructor();
- *          calculate();
- *          checkX();
- *          checkK();
- *          checkP();
- *          checkPValue();
- *          checkKXValue();
- *          checkAll();
- *          reset();
  * */
 class NegativeBinomial {
-  constructor() {
+  constructor(a, b, c) {
     validate = new ValidateInput();
+    this.x = -1;
+    this.k = -1;
+    this.p = -1;
+    this.error1 = a;
+    this.error2 = b;
+    this.error3 = c;
+    this.result = document.getElementById('result');
+  }
+
+  verifyX() {
+    switch (this.checkX()) {
+      case 1: // when x is less than 1
+        this.x = -1;
+        this.error1.style.color = 'red';
+        this.error1.value = 'x must be at least 1';
+        break;
+      case 2: // when x is not valid Integer
+        this.x = -1;
+        this.error1.style.color = 'red';
+        this.error1.value = 'Input must be valid Integer';
+        break;
+      default: // when x is valid
+        this.error1.style.color = 'green';
+        this.error1.value = '✔';
+        break;
+    }
+  }
+
+  verifyK() {
+    if (this.checkK() === true) {
+      this.error2.style.color = 'green';
+      this.error2.value = '✔';
+    } else {
+      this.k = -1;
+      this.error2.style.color = 'red';
+      this.error2.value = 'Input must be valid Integer';
+    }
+  }
+
+  verifyP() {
+    switch (this.checkP()) {
+      case 1: // when p is out of range
+        this.p = -1;
+        this.error3.style.color = 'red';
+        this.error3.value = 'p must between 1 and 0';
+        break;
+      case 2: // when p is not valid
+        this.p = -1;
+        this.error3.style.color = 'red';
+        this.error3.value = 'Input must be valid';
+        break;
+      default: // when p is valid
+        this.error3.style.color = 'green';
+        this.error3.value = '✔';
+        break;
+    }
   }
 
   /**
@@ -55,66 +104,52 @@ class NegativeBinomial {
    * */
   calculate() {
     if (this.checkAll() === true) {
-      document.getElementById('result').disabled = false;
-      const x = document.getElementById('x').value;
-      const k = document.getElementById('k').value;
-      const p = document.getElementById('p').value;
-      const v1 = validate.Combination(x - 1, k - 1);
-      const v2 = Math.pow(p, k);
-      const v3 = Math.pow(1 - p, x - k);
-      document.getElementById('result').value = (v1 * v2 * v3);
+      this.result.disabled = false;
+      this.result.style.color = 'black';
+      this.result.value = this.negativeBinomialFormula();
     } else {
-      document.getElementById('result').value = 'Invalid Input';
+      this.result.style.color = 'red';
+      this.result.value = 'Invalid Input';
     }
   }
 
   /**
-   *Function: checkX()
-   *  Rule: x value must be a valid float number and x>=1
+   *Function: negativeBinomialFormula() - computation of Negative Binomial
+   * */
+  negativeBinomialFormula() {
+    const v1 = validate.Combination(this.x - 1, this.k - 1);
+    const v2 = Math.pow(this.p, this.k);
+    const v3 = Math.pow(1 - this.p, this.x - this.k);
+    return (v1 * v2 * v3);
+  }
+
+  /**
+   * Function: checkX()
+   *  Rule: x value must be a valid Integer number, x>=1
    *  Return:
-   *    _if the rule has not been satisfied - print a red error message in the error box
-   *    _else - print a check mark in the error box
+   *    _if x is not valid, return 2
+   *    _if x is valid but x<1, return 1
+   *    _else - return 3
    * */
   checkX() {
-    const xValue = document.getElementById('x').value;
-    const error = document.getElementById('error1');
-    if (validate.checkIfValidInput(xValue) === true) { // valid for X
-      if (xValue >= 1) {
-        error.style.color = 'green';
-        error.value = '  ✔';
-        return true;
-      }
-      error.style.color = 'red';
-      error.value = '  Input must be at less 1';
-      return false;
+    if (validate.checkIfValidInput(this.x) === true && validate.isDecimal === false) {
+      if (this.x < 1) return 1;
+      return 3;
     }
-    error.style.color = 'red';
-    error.value = '  Input must be valid';
-    return false;
+    return 2;
   }
 
   /**
-   * Function: checkK()
-   *  Rule: k value must be a valid float number, and k <= x
+   *Function: checkK()
+   *  Rule: k value must be a valid Integer
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _if the rule has not been satisfied - return false
+   *    _else - return true
    * */
   checkK() {
-    const nValue = document.getElementById('k').value;
-    const error = document.getElementById('error2');
-    if (validate.checkIfValidInput(nValue) === true) {
-      if (this.checkKXValue() === true) {
-        error.style.color = 'green';
-        error.value = '  ✔';
-        return true;
-      }
-      error.style.color = 'red';
-      error.value = '  k must be less than or equal to x';
-      return false;
+    if (validate.checkIfValidInput(this.k) === true && validate.isDecimal === false) { // valid for X
+      return true;
     }
-    error.style.color = 'red';
-    error.value = '  Input must be valid';
     return false;
   }
 
@@ -122,78 +157,56 @@ class NegativeBinomial {
    * Function: checkP()
    *  Rule: p value must be a valid float number, and p=[0,1]
    *  Return:
-   *    _if all rules have been satisfied - print a check mark in the error box
-   *    _else - print the error message accordingly
+   *    _3: if all rules have been satisfied - print a check mark in the error box
+   *    _2: if p value is not valid
+   *    _1: if p is greater than 1
    * */
   checkP() {
-    const pValue = document.getElementById('p').value;
-    const error = document.getElementById('error3');
-    if (validate.checkIfValidInput(pValue) === true) {
-      if (this.checkPValue() === true) {
-        error.style.color = 'green';
-        error.value = '✔';
-        return true;
-      }
-      error.style.color = 'red';
-      error.value = '  p must between 1 and 0';
-      return false;
+    if (validate.checkIfValidInput(this.p) === true) {
+      if (this.p <= 1 && this.p >= 0) return 3;
+      return 1;
     }
-    error.style.color = 'red';
-    error.value = '  Input must be valid';
-    return false;
-  }
-
-  /**
-   * Function: checkPValue()
-   *  Rule: p=[0,1]
-   *  Return:
-   *    _true - if p<=1 and p>=0
-   *    _false - if p>1 or p<0
-   * */
-  checkPValue() {
-    const p = document.getElementById('p').value;
-    return !(p > 1 || p < 0);
-  }
-
-  /**
-   * Function: checkKXValue()
-   *  Rule: k <= x
-   *  Return:
-   *    _true - if k <= x
-   *    _false - if k > x
-   * */
-  checkKXValue() { // k<=x
-    const x = parseFloat(document.getElementById('x').value);
-    const k = parseFloat(document.getElementById('k').value);
-    return k <= x;
+    return 2;
   }
 
   /**
    * Function: checkAll()
-   *  Rules: x, k, and p are valid float number, x>=1, k<=x and p=[0,1]
+   *  Rules: x, k, and p are valid number, x>=k and p=[0,1]
    *  Return:
    *    _true - if all rules have been satisfied
    *    _false - if at least one of the rules has not been satisfied
    * */
   checkAll() {
-    if (this.checkX() === true && this.checkK() === true && this.checkP() === true) {
-      if (this.checkPValue() === true && this.checkKXValue() === true) {
-        return true;
-      }
+    if (this.checkK() !== true || this.checkX() !== 3 || this.checkP() !== 3) {
+      this.result.style.color = 'red';
+      this.result.value = 'Invalid Input';
+      return false;
     }
-    return false;
+    if (this.k > this.x) {
+      this.error2.value = 'k must be less than or equal x';
+      this.error1.value = '!';
+      return false;
+    }
+    this.error1.value = '✔';
+    this.error2.value = '✔';
+    this.error3.value = '✔';
+    return true;
   }
 
   /**
    * Function: reset() - reset the value of the input boxes to 0 and empty the value of error boxes
    * */
   reset() {
-    document.getElementById('x').value = '0';
-    document.getElementById('k').value = '0';
-    document.getElementById('p').value = '0';
-    document.getElementById('error1').value = '';
-    document.getElementById('error2').value = '';
-    document.getElementById('error3').value = '';
-    document.getElementById('result').value = '';
+    document.getElementById('x').value = '';
+    document.getElementById('k').value = '';
+    document.getElementById('p').value = '';
+    this.error1.value = '';
+    this.error2.value = '';
+    this.error3.value = '';
+    this.result.value = '';
+    this.k = -1;
+    this.p = -1;
+    this.x = -1;
+    this.result.disabled = true;
   }
 }
