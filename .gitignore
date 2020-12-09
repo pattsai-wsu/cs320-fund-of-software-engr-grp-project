@@ -12,6 +12,7 @@
 
 .idea/
 .vscode/
+website-code/
 
 # Package Files #
 *.jar
