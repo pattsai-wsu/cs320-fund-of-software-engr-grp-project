@@ -2,37 +2,6 @@ let binomial; // instance of Binomial class
 let validate; // instance of ValidateInput class
 
 /**
- *Function: callBinomial(data)-call appropriate method of the Binomial class as needed
- * */
-function callBinomial(num, value, value2, value3) {
-  switch (num) {
-    case 0:// on page load
-      binomial = new Binomial(value, value2, value3);
-      break;
-    case 1:// x
-      binomial.x = value;
-      binomial.verifyX();
-      break;
-    case 2:// n
-      binomial.n = value;
-      binomial.verifyN();
-      break;
-    case 3:// p
-      binomial.p = value;
-      binomial.verifyP();
-      break;
-    case 'reset':// reset button
-      binomial.reset();
-      break;
-    case 'calculate':// result button
-      binomial.calculate();
-      break;
-    default:
-      break;
-  }
-}
-
-/**
  *Class: Binomial - all methods that binomial will be needed
  * */
 class Binomial {
@@ -49,6 +18,7 @@ class Binomial {
 
   verifyX() {
     if (this.checkX() === true) {
+      this.x = parseFloat(this.x);
       this.error1.style.color = 'green';
       this.error1.value = '✔';
     } else {
@@ -71,6 +41,7 @@ class Binomial {
         this.error2.value = 'Input must be valid Integer';
         break;
       default: // when n is valid
+        this.n = parseFloat(this.n);
         this.error2.style.color = 'green';
         this.error2.value = '✔';
         break;
@@ -90,6 +61,7 @@ class Binomial {
         this.error3.value = 'Input must be valid';
         break;
       default: // when p is valid
+        this.p = parseFloat(this.p);
         this.error3.style.color = 'green';
         this.error3.value = '✔';
         break;
@@ -177,7 +149,7 @@ class Binomial {
    *    _false - if at least one of the rules has not been satisfied
    * */
   checkAll() {
-    if (this.checkX() !== true || this.checkN() !== 3 || this.checkP() !== 3) {
+    if (this.n === -1 || this.x === -1 || this.p === -1) {
       this.result.style.color = 'red';
       this.result.value = 'Invalid Input';
       return false;
@@ -208,5 +180,36 @@ class Binomial {
     this.p = -1;
     this.x = -1;
     this.result.disabled = true;
+  }
+}
+
+/**
+ *Function: callBinomial(data)-call appropriate method of the Binomial class as needed
+ * */
+function callBinomial(num, value, value2, value3) {
+  switch (num) {
+    case 0:// on page load
+      binomial = new Binomial(value, value2, value3);
+      break;
+    case 1:// x
+      binomial.x = value;
+      binomial.verifyX();
+      break;
+    case 2:// n
+      binomial.n = value;
+      binomial.verifyN();
+      break;
+    case 3:// p
+      binomial.p = value;
+      binomial.verifyP();
+      break;
+    case 'reset':// reset button
+      binomial.reset();
+      break;
+    case 'calculate':// result button
+      binomial.calculate();
+      break;
+    default:
+      break;
   }
 }
