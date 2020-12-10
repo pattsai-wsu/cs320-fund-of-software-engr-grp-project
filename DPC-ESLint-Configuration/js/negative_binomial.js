@@ -4,33 +4,34 @@ let validate; // instance of ValidateInput class
 /**
  *Function: callNegativeBinomial(data)-call appropriate method of the Negative Binomial class as needed
  * */
-function callNegativeBinomial(num, value, value2, value3) {
-  switch (num) {
-    case 0:// on page load
-      nBinomial = new NegativeBinomial(value, value2, value3);
-      break;
-    case 1:// x
-      nBinomial.x = value;
-      nBinomial.verifyX();
-      break;
-    case 2:// k
-      nBinomial.k = value;
-      nBinomial.verifyK();
-      break;
-    case 3:// p
-      nBinomial.p = value;
-      nBinomial.verifyP();
-      break;
-    case 'reset':// reset button
-      nBinomial.reset();
-      break;
-    case 'calculate':// result button
-      nBinomial.calculate();
-      break;
-    default:
-      break;
-  }
-}
+// function callNegativeBinomial(num, value, value2, value3) {
+//   // const nBinomial;
+//   switch (num) {
+//     case 0:// on page load
+//       nBinomial = new NegativeBinomial(value, value2, value3);
+//       break;
+//     case 1:// x
+//       nBinomial.x = value;
+//       nBinomial.verifyX();
+//       break;
+//     case 2:// k
+//       nBinomial.k = value;
+//       nBinomial.verifyK();
+//       break;
+//     case 3:// p
+//       nBinomial.p = value;
+//       nBinomial.verifyP();
+//       break;
+//     case 'reset':// reset button
+//       nBinomial.reset();
+//       break;
+//     case 'calculate':// result button
+//       nBinomial.calculate();
+//       break;
+//     default:
+//       break;
+//   }
+// }
 
 /**
  *Class: NegativeBinomial - all methods that negative-binomial will be needed
@@ -60,6 +61,7 @@ class NegativeBinomial {
         this.error1.value = 'Input must be valid Integer';
         break;
       default: // when x is valid
+        this.x = parseFloat(this.x);
         this.error1.style.color = 'green';
         this.error1.value = '✔';
         break;
@@ -68,6 +70,7 @@ class NegativeBinomial {
 
   verifyK() {
     if (this.checkK() === true) {
+      this.k = parseFloat(this.k);
       this.error2.style.color = 'green';
       this.error2.value = '✔';
     } else {
@@ -90,6 +93,7 @@ class NegativeBinomial {
         this.error3.value = 'Input must be valid';
         break;
       default: // when p is valid
+        this.p = parseFloat(this.p);
         this.error3.style.color = 'green';
         this.error3.value = '✔';
         break;
@@ -177,7 +181,7 @@ class NegativeBinomial {
    *    _false - if at least one of the rules has not been satisfied
    * */
   checkAll() {
-    if (this.checkK() !== true || this.checkX() !== 3 || this.checkP() !== 3) {
+    if (this.k === -1 || this.x === -1 || this.p === -1) {
       this.result.style.color = 'red';
       this.result.value = 'Invalid Input';
       return false;
@@ -208,5 +212,37 @@ class NegativeBinomial {
     this.p = -1;
     this.x = -1;
     this.result.disabled = true;
+  }
+}
+
+/**
+ *Function: callNegativeBinomial(data)-call appropriate method of the Negative Binomial class as needed
+ * */
+function callNegativeBinomial(num, value, value2, value3) {
+  // const nBinomial;
+  switch (num) {
+    case 0:// on page load
+      nBinomial = new NegativeBinomial(value, value2, value3);
+      break;
+    case 1:// x
+      nBinomial.x = value;
+      nBinomial.verifyX();
+      break;
+    case 2:// k
+      nBinomial.k = value;
+      nBinomial.verifyK();
+      break;
+    case 3:// p
+      nBinomial.p = value;
+      nBinomial.verifyP();
+      break;
+    case 'reset':// reset button
+      nBinomial.reset();
+      break;
+    case 'calculate':// result button
+      nBinomial.calculate();
+      break;
+    default:
+      break;
   }
 }
