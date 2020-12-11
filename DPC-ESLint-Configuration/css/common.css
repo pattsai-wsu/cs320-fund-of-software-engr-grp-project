@@ -279,6 +279,12 @@ html,body{
     text-decoration: none;
   }
 
+  .videoDistPage {
+    width: 95%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
   .termsPage {
     width:95%;
     margin-left: auto;
