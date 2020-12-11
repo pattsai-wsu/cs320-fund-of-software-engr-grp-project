@@ -2,8 +2,7 @@ let hypergeometric;
 let validate;
 
 class Hypergeometric {
-
-  constructor(a, b, c) {
+  constructor(a, b, c, d) {
     validate = new ValidateInput();
     this.x = -1;
     this.n = -1;
@@ -12,6 +11,7 @@ class Hypergeometric {
     this.error1 = a;
     this.error2 = b;
     this.error3 = c;
+    this.error4 = d;
     this.result = document.getElementById('result');
   }
 
@@ -50,46 +50,50 @@ class Hypergeometric {
   verifyN() {
     switch (this.checkN()) {
       case 1: // N is good
-        this.p = parseFloat(this.p);
+        this.N = parseFloat(this.N);
         this.error3.style.color = 'green';
         this.error3.value = '✔';
         break;
       case 2: // when N >= n but not >= 1
-        this.p = -1;
+        this.N = -1;
         this.error3.style.color = 'red';
         this.error3.value = 'N must be greater than or equal to 1';
         break;
       case 3: // when neither is true
-        this.p = -1;
+        this.N = -1;
         this.error3.style.color = 'red';
-        this.error3.value = ' N must be greater than or equal to 1 and greater than or equal to n'
+        this.error3.value = ' N must be greater than or equal to 1 and greater than or equal to n';
+        break;
       default: // N is valid
-        this.p = -1
+        this.N = -1;
         this.error3.style.color = 'red';
         this.error3.value = 'Input must be valid integer';
         break;
     }
   }
-  verifyk () {
+
+  verifyk() {
     switch (this.checkK()) {
       case 1: // k is good
-        this.p = parseFloat(this.p);
-        this.error3.style.color = 'green';
-        this.error3.value = '✔';
+        this.k = parseFloat(this.k);
+        this.error4.style.color = 'green';
+        this.error4.value = '✔';
         break;
       case 2: // when k !<= n but k >= x
-        this.p = -1;
-        this.error3.style.color = 'red';
-        this.error3.value = 'k must be less than or equal to n';
+        this.k = -1;
+        this.error4.style.color = 'red';
+        this.error4.value = 'k must be less than or equal to n';
         break;
       case 3: // when neither is true
-        this.p = -1;
-        this.error3.style.color = 'red';
-        this.error3.value = ' k must be less than or equal to n and greater or equal to x'
+        this.k = -1;
+        this.error4.style.color = 'red';
+        // this.error4.value = ' k must be less than or equal to n and greater or equal to x';
+        this.error4.value = 'x <= k <= n';
+        break;
       default: // k is invalid
-        this.p = -1
-        this.error3.style.color = 'red';
-        this.error3.value = 'Input must be valid integer';
+        this.k = -1;
+        this.error4.style.color = 'red';
+        this.error4.value = 'Input must be valid integer';
         break;
     }
   }
@@ -120,13 +124,12 @@ class Hypergeometric {
     return false;
   }
 
-  checkn() { //1 means n is good, 2 means n!>=x, 3 means n is invalid
+  checkn() { // 1 means n is good, 2 means n!>=x, 3 means n is invalid
     if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
       if (this.n >= this.x) {
         return 1;
-      } else {
-        return 2;
       }
+      return 2;
     }
     return 3;
   }
@@ -135,26 +138,25 @@ class Hypergeometric {
     if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
       if (this.N >= 1 && this.N >= this.n) {
         return 1;
-      } else if (this.N >= 1) {
-          return 2; // N !>= n
-        } else
-      return 3; // N!>= 1
+      } if (this.N >= 1) {
+        return 2; // N !>= n
+      } return 3; // N!>= 1
     }
     return 4;
   }
 
   checkK() {
-    if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
-      if( this.k <= this.N && this.k >= this.x){
+    if (validate.checkIfValidInput(this.k) === true && validate.isDecimal === false) {
+      if (this.k <= this.n && this.k >= this.x) {
         return 1;
       }
-      else if( this.k <= this.N) {
+      if (this.k <= this.n) {
         return 2; // K !>= x
       }
-      else return 3; //K !<= N
+      return 3; // K !<= N
     }
-    return 4
-    }
+    return 4;
+  }
 
   checkAll() {
     if (this.n === -1 || this.x === -1 || this.N === -1 || this.k === -1) {
@@ -162,25 +164,27 @@ class Hypergeometric {
       this.result.value = 'Invalid Input';
       return false;
     }
-  /*  if (this.n < this.x) {
+    /*  if (this.n < this.x) {
       this.error1.value = 'x must be less than or equal n';
       this.error2.value = '!';
       return false;
-    }*/
+    } */
     this.error1.value = '✔';
     this.error2.value = '✔';
     this.error3.value = '✔';
+    this.error4.value = '✔';
     return true;
   }
 
   reset() {
     document.getElementById('x').value = '';
     document.getElementById('n').value = '';
-    document.getElementById('N').value = '';
-    document.getElementById('k').value = '';
+    document.getElementById('N1').value = '';
+    document.getElementById('K').value = '';
     this.error1.value = '';
     this.error2.value = '';
     this.error3.value = '';
+    this.error4.value = '';
     this.result.value = '';
     this.k = -1;
     this.N = -1;
@@ -188,13 +192,12 @@ class Hypergeometric {
     this.x = -1;
     this.result.disabled = true;
   }
-
 }
 
-function callHypergeometric(num, value, value2, value3) {
+function callHypergeometric(num, value, value2, value3, value4) {
   switch (num) {
     case 0:// on page load
-      hypergeometric = new Hypergeometric(value, value2, value3);
+      hypergeometric = new Hypergeometric(value, value2, value3, value4);
       break;
     case 1:// x
       hypergeometric.x = value;
@@ -211,6 +214,7 @@ function callHypergeometric(num, value, value2, value3) {
     case 4:
       hypergeometric.k = value;
       hypergeometric.verifyk();
+      break;
     case 'reset':// reset button
       hypergeometric.reset();
       break;
@@ -222,7 +226,7 @@ function callHypergeometric(num, value, value2, value3) {
   }
 }
 
-  /*
+/*
 function callHypergeometric(num) {
   switch (num) {
     case 0:// on page load
@@ -250,7 +254,6 @@ function callHypergeometric(num) {
       break;
   }
 }
-
 
 class Hypergeometric {
   constructor() {
