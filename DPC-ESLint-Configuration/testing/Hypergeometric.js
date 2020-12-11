@@ -38,6 +38,58 @@ describe('Test for Correctness', function () {
         this.slow(0);
         chai.expect(temp.checkN()).to.equal(4);
       });
+      it('when N is 0, checkN should return 3(the false value for N >= n but N !>=1 )', function () {
+        temp.n = '-1';
+        temp.N = '0';
+        this.slow(0);
+        chai.expect(temp.checkN()).to.equal(3);
+      });
+      it('when N is 2, checkN should return 2(the false value for N >=1 but N !>= n', function () {
+        temp.n = '21';
+        temp.N = '2';
+        this.slow(0);
+        chai.expect(temp.checkN()).to.equal(2);
+      });
+      it('when N is 30, checkN should return 1(the true value)', function () {
+        temp.N = '30';
+        this.slow(0);
+        chai.expect(temp.checkN()).to.equal(1);
+      });
     });
+
+    describe('Function: checkK()', function () {
+      it('when k is 1.2, checkK should return 4(the false value for not being an integer)', function () {
+        temp.k = '1.2';
+        this.slow(0);
+        chai.expect(temp.checkK()).to.equal(4);
+      });
+      it('when k is 31, checkK should return 3(the false value for k >= x but k !<= N', function () {
+        temp.k = '31';
+        this.slow(0);
+        chai.expect(temp.checkK()).to.equal(3);
+    });
+      it('when k is 19, checkK should return 2(the false value for k <= N but k !>= x', function () {
+        temp.k = '19';
+        this.slow(0);
+        chai.expect(temp.checkK()).to.equal(2);
+      });
+      it('when k is 21, checkK should return 1 ', function () {
+        temp.k = '21';
+        this.slow(0);
+        chai.expect(temp.checkK()).to.equal(1);
+      });
+    });
+
+    describe('Function; hyperFormula()', function () {
+      it('when x=5, n=15, N=20, k=10, the result should be 0.016253869969040248', function () {
+        temp.x = '5';
+        temp.n = '15';
+        temp.N = '20';
+        temp.k = '10';
+        this.slow(0);
+        chai.expect(temp.hyperFormula()).to.equal(0.016253869969040248);
+      });
+    });
+
   });
 });
