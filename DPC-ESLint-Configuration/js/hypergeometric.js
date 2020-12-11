@@ -135,7 +135,7 @@ class Hypergeometric {
   }
 
   checkN() {
-    if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
+    if (validate.checkIfValidInput(this.N) === true && validate.isDecimal === false) {
       if (this.N >= 1 && this.N >= this.n) {
         return 1;
       } if (this.N >= 1) {
