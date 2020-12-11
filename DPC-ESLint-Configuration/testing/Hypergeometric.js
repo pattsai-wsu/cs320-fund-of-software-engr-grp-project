@@ -7,7 +7,7 @@ describe('Test for Correctness', function () {
         temp.x = '2.63';
         chai.expect(temp.checkX()).to.be.false;
       });
-      it('when x=20, checkIfValidInput should return true', function () {
+      it('when x=20, checkX() should return true', function () {
         temp.x = '20';
         this.slow(0);
         chai.expect(temp.checkX()).to.be.true;
