@@ -155,4 +155,7 @@ html,body{
   .about-list {
     width:90%;
   }
+  .titleContainer {
+    background-size: 300px 80px;
+  }
 }
