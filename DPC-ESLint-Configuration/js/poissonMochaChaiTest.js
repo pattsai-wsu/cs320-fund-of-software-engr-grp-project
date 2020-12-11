@@ -22,59 +22,62 @@ class PoissonView {
   inputChangeX() {
     const x = document.getElementById('x').value;
     poissonController.validateInputX(x);
-    document.getElementById('result').value = '';
+    // document.getElementById('result').value = '';
   }
 
   inputChangeLambda() {
     const lambda = document.getElementById('lambda').value;
     poissonController.validateInputLambda(lambda);
-    document.getElementById('result').value = '';
+    // document.getElementById('result').value = '';
   }
 
   updateXInput(isXInputTrue) {
-    const error1 = document.getElementById('error1');
+    // const error1 = document.getElementById('error1');
     if(isXInputTrue === true) {
-      error1.style.color = 'green';
-      error1.value = '  ✔';
+      // error1.style.color = 'green';
+      // error1.value = '  ✔';
       return true;
     }
     else {
-      error1.style.color = 'red';
-      error1.value = '  Input must be positive Integer';
+      // error1.style.color = 'red';
+      // error1.value = '  Input must be positive Integer';
       return false;
     }
   }
 
   updateLambdaInput(isLambdaInputTrue) {
-    const error2 = document.getElementById('error2');
+    // const error2 = document.getElementById('error2');
     if(isLambdaInputTrue === true) {
-      error2.style.color = 'green';
-      error2.value = '  ✔';
+      // error2.style.color = 'green';
+      // error2.value = '  ✔';
       return true;
     }
     else {
-      error2.style.color = 'red';
-      error2.value = '  Input must be positive number';
+      // error2.style.color = 'red';
+      // error2.value = '  Input must be positive number';
       return false;
     }
   }
 
   calculate() {
-    const x = document.getElementById('x').value;
-    const lambda = document.getElementById('lambda').value;
+    // const x = document.getElementById('x').value;
+    // const lambda = document.getElementById('lambda').value;
     if (x.toString().length > 0 && lambda.toString().length > 0) {
       let xCheckValid = poissonController.validateInputX(x);
       let lambdaCheckValid = poissonController.validateInputLambda(lambda);
       if(xCheckValid === true && lambdaCheckValid === true) {
         let probabilityAns = poissonController.calculate(x, lambda);
-        document.getElementById('result').value = probabilityAns;
+        // document.getElementById('result').value = probabilityAns;
+        return true;
       }
       else {
-        document.getElementById('result').value = 'Invalid Input';
+        // document.getElementById('result').value = 'Invalid Input';
+        return false;
       }
     }
     else {
-      document.getElementById('result').value = 'Invalid Input - missing value';
+      // document.getElementById('result').value = 'Invalid Input - missing value';
+      return false;
     }
   }
 
@@ -82,11 +85,11 @@ class PoissonView {
    * Function: reset() - reset the value of the input boxes to 0 and empty the value of error boxes
    * */
   reset() {
-    document.getElementById('x').value = '';
-    document.getElementById('lambda').value = '';
-    document.getElementById('error1').value = '';
-    document.getElementById('error2').value = '';
-    document.getElementById('result').value = '';
+    // document.getElementById('x').value = '';
+    // document.getElementById('lambda').value = '';
+    // document.getElementById('error1').value = '';
+    // document.getElementById('error2').value = '';
+    // document.getElementById('result').value = '';
   }
 }
 
