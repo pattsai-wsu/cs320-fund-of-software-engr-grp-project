@@ -1,16 +1,14 @@
 describe('Test for Correctness', function () {
-    describe('CLASS:  Hypergeometric', function () {
-        const temp = new Hypergeometric();
+    describe('CLASS:  ValidateInput', function () {
+        const temp = new ValidateInput();
         describe('Function:  checkX()', function () {
-            it('when x=2.63, checkX() should return false since it must be a decimal number', function () {
-                temp.x = '2.63';
+            it('when input is 2.63, checkIfValidInput should return false since it must be a decimal number', function () {
                 this.slow(0);
-                chai.expect(temp.checkX()).to.be.false;
+                chai.expect(temp.checkIfValidInput('31fwef')).to.be.false;
             });
-            it('when x=10, checkX() should return true', function () {
-                temp.x = '10';
+            it('when x=10, checkIfValidInput should return true', function () {
                 this.slow(0);
-                chai.expect(temp.checkX()).to.be.true;
+                chai.expect(temp.checkIfValidInput('10')).to.be.true;
             });
         });
     });
