@@ -50,22 +50,22 @@ class Hypergeometric {
   verifyN() {
     switch (this.checkN()) {
       case 1: // N is good
-        this.p = parseFloat(this.p);
+        this.N = parseFloat(this.N);
         this.error3.style.color = 'green';
         this.error3.value = '✔';
         break;
       case 2: // when N >= n but not >= 1
-        this.p = -1;
+        this.N = -1;
         this.error3.style.color = 'red';
         this.error3.value = 'N must be greater than or equal to 1';
         break;
       case 3: // when neither is true
-        this.p = -1;
+        this.N = -1;
         this.error3.style.color = 'red';
         this.error3.value = ' N must be greater than or equal to 1 and greater than or equal to n';
         break;
       default: // N is valid
-        this.p = -1;
+        this.N = -1;
         this.error3.style.color = 'red';
         this.error3.value = 'Input must be valid integer';
         break;
@@ -75,24 +75,25 @@ class Hypergeometric {
   verifyk() {
     switch (this.checkK()) {
       case 1: // k is good
-        this.p = parseFloat(this.p);
-        this.error3.style.color = 'green';
-        this.error3.value = '✔';
+        this.k = parseFloat(this.k);
+        this.error4.style.color = 'green';
+        this.error4.value = '✔';
         break;
       case 2: // when k !<= n but k >= x
-        this.p = -1;
-        this.error3.style.color = 'red';
-        this.error3.value = 'k must be less than or equal to n';
+        this.k = -1;
+        this.error4.style.color = 'red';
+        this.error4.value = 'k must be less than or equal to n';
         break;
       case 3: // when neither is true
-        this.p = -1;
-        this.error3.style.color = 'red';
-        this.error3.value = ' k must be less than or equal to n and greater or equal to x';
+        this.k = -1;
+        this.error4.style.color = 'red';
+        // this.error4.value = ' k must be less than or equal to n and greater or equal to x';
+        this.error4.value = 'x <= k <= n';
         break;
       default: // k is invalid
-        this.p = -1;
-        this.error3.style.color = 'red';
-        this.error3.value = 'Input must be valid integer';
+        this.k = -1;
+        this.error4.style.color = 'red';
+        this.error4.value = 'Input must be valid integer';
         break;
     }
   }
@@ -145,7 +146,7 @@ class Hypergeometric {
   }
 
   checkK() {
-    if (validate.checkIfValidInput(this.n) === true && validate.isDecimal === false) {
+    if (validate.checkIfValidInput(this.k) === true && validate.isDecimal === false) {
       if (this.k <= this.N && this.k >= this.x) {
         return 1;
       }
@@ -163,11 +164,6 @@ class Hypergeometric {
       this.result.value = 'Invalid Input';
       return false;
     }
-    /*  if (this.n < this.x) {
-        this.error1.value = 'x must be less than or equal n';
-        this.error2.value = '!';
-        return false;
-      } */
     this.error1.value = '✔';
     this.error2.value = '✔';
     this.error3.value = '✔';
@@ -178,8 +174,8 @@ class Hypergeometric {
   reset() {
     document.getElementById('x').value = '';
     document.getElementById('n').value = '';
-    document.getElementById('N').value = '';
-    document.getElementById('k').value = '';
+    document.getElementById('N1').value = '';
+    document.getElementById('K').value = '';
     this.error1.value = '';
     this.error2.value = '';
     this.error3.value = '';
@@ -196,7 +192,7 @@ class Hypergeometric {
 function callHypergeometric(num, value, value2, value3, value4) {
   switch (num) {
     case 0:// on page load
-      hypergeometric = new Hypergeometric(value, value2, value3);
+      hypergeometric = new Hypergeometric(value, value2, value3, value4);
       break;
     case 1:// x
       hypergeometric.x = value;
