@@ -36,12 +36,10 @@ class PoissonView {
     if(isXInputTrue === true) {
       error1.style.color = 'green';
       error1.value = '  ✔';
-      return true;
     }
     else {
       error1.style.color = 'red';
       error1.value = '  Input must be positive Integer';
-      return false;
     }
   }
 
@@ -50,12 +48,10 @@ class PoissonView {
     if(isLambdaInputTrue === true) {
       error2.style.color = 'green';
       error2.value = '  ✔';
-      return true;
     }
     else {
       error2.style.color = 'red';
       error2.value = '  Input must be positive number';
-      return false;
     }
   }
 
@@ -105,7 +101,7 @@ class PoissonController {
         return false;
       }
     }
-    if(this.xInputVal.length > 0 && x > 0 && x < 171) {
+    if(this.xInputVal.length > 0) {
       poissonView.updateXInput(true);
       return true;
     }
@@ -131,7 +127,7 @@ class PoissonController {
         }
       }
     }
-    if(this.lambdaInputVal.length > 0 && lambda > 0 && lambda < 745.00000001) {
+    if(this.lambdaInputVal.length > 0) {
       poissonView.updateLambdaInput(true);
       return true;
     }
