@@ -188,6 +188,15 @@ html,body{
   padding: 0.5em;
 }
 
+.contact {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
   background-color: #eee;
@@ -303,6 +312,11 @@ html,body{
     background-position: center;
     padding: 0.5em;
   }
+
+  .contact {
+    width: 75%;
+  }
+
   /* Style the navigation menu */
   .topnav {
     display:block;
