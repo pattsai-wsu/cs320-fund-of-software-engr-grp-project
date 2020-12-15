@@ -40,7 +40,7 @@ class PoissonView {
     }
     else {
       error1.style.color = 'red';
-      error1.value = '  Input must be positive Integer';
+      error1.value = '  x must be integer, 0 < x ≤ 170';
       return false;
     }
   }
@@ -54,7 +54,7 @@ class PoissonView {
     }
     else {
       error2.style.color = 'red';
-      error2.value = '  Input must be positive number';
+      error2.value = ' λ must be rational num 0 < λ ≤ 745';
       return false;
     }
   }
@@ -67,13 +67,16 @@ class PoissonView {
       let lambdaCheckValid = poissonController.validateInputLambda(lambda);
       if(xCheckValid === true && lambdaCheckValid === true) {
         let probabilityAns = poissonController.calculate(x, lambda);
+        document.getElementById('result').style.color = 'black';
         document.getElementById('result').value = probabilityAns;
       }
       else {
+        document.getElementById('result').style.color = 'red';
         document.getElementById('result').value = 'Invalid Input';
       }
     }
     else {
+      document.getElementById('result').style.color = 'red';
       document.getElementById('result').value = 'Invalid Input - missing value';
     }
   }
