@@ -187,6 +187,17 @@ html,body{
   background-position: center;
   padding: 0.5em;
 }
+.qr-code-image {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  background-image: url("../image/dpc-qr-code.png");
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+  background-position: center;
+  padding: 0.5em;
+}
 
 .contact {
   display: block;
@@ -311,6 +322,10 @@ html,body{
     background-size: 300px 140px;
     background-position: center;
     padding: 0.5em;
+  }
+
+  .qr-code-image {
+    width: 90%;
   }
 
   .contact {
