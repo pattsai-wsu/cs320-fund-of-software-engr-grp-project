@@ -18,7 +18,9 @@ Team members: Vuochlang Chang, Patrick Tsai, Zhicheng Zhou
 
 Current Status: implementation phase 
 
-website (not necessarily the latest GitHub version): https://dpc.patricktsai.com/html/main.html
+website: https://dpc.patricktsai.com/html/main.html
 
-Date of update: 12/06/2020
+Mocha/Chai testing (run on server realtime): https://dpc.patricktsai.com/html/contact.html 
+
+Date of update: 12/16/2020
 
