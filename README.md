@@ -1,5 +1,9 @@
 # Discrete Probability Calculator v1.0
 
+Website: https://dpc.patricktsai.com/html/main.html
+
+Mocha/Chai testing (run on server realtime): https://dpc.patricktsai.com/html/contact.html 
+
 Description: For this project, we are creating a web-based calculator that calculates five different discrete distributions based on user's selection and inputs. The Discrete Probability Calculator is a simple website-based application that users can use to calculate the probability of the discrete distribution. There are multiple ways where the user can access the calculations for each distribution.
 
 The overall goals of the system are:
@@ -17,10 +21,6 @@ The DPC system is intended for study purposes, its intended use is for student/a
 Team members: Vuochlang Chang, Patrick Tsai, Zhicheng Zhou
 
 Current Status: implementation phase 
-
-website: https://dpc.patricktsai.com/html/main.html
-
-Mocha/Chai testing (run on server realtime): https://dpc.patricktsai.com/html/contact.html 
 
 Date of update: 12/16/2020
 
